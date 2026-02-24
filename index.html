@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stuart Woolley — Apps</title>
+<meta name="description" content="iOS and macOS apps by Stuart Woolley. Retro CRT phosphor display utilities — aviation weather, radiation monitoring, rail timetables, and more.">
+<meta property="og:title" content="Stuart Woolley — Apps">
+<meta property="og:description" content="iOS and macOS apps by Stuart Woolley. Retro CRT phosphor display utilities for aviation, weather, rail, and reference data.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --green: #33ff33;
+    --green-dim: #1a8a1a;
+    --green-glow: #33ff3344;
+    --amber: #ffb833;
+    --amber-dim: #8a6a1a;
+    --scanline: rgba(0,0,0,0.15);
+    --border: #1a661a;
+    --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--green);
+    font-family: var(--font);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* CRT scanline overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      var(--scanline) 2px,
+      var(--scanline) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Subtle screen curvature vignette */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .terminal {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    position: relative;
+  }
+
+  .header {
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .header h1 {
+    font-size: 1.1rem;
+    font-weight: normal;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 10px var(--green-glow), 0 0 20px var(--green-glow);
+    margin-bottom: 4px;
+  }
+
+  .header .subtitle {
+    color: var(--green-dim);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+  }
+
+  .header .corners {
+    position: absolute;
+    font-size: 0.7rem;
+    color: var(--green-dim);
+  }
+  .header .corners.tl { top: 4px; left: 8px; }
+  .header .corners.tr { top: 4px; right: 8px; }
+  .header .corners.bl { bottom: 4px; left: 8px; }
+  .header .corners.br { bottom: 4px; right: 8px; }
+
+  .section-label {
+    color: var(--green-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 28px;
+  }
+
+  .app {
+    display: block;
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--green);
+    transition: all 0.15s ease;
+    position: relative;
+  }
+
+  .app:hover {
+    border-color: var(--green);
+    background: rgba(51, 255, 51, 0.04);
+    text-shadow: 0 0 8px var(--green-glow);
+  }
+
+  .app:hover .app-name {
+    text-shadow: 0 0 10px var(--green-glow), 0 0 20px var(--green-glow);
+  }
+
+  .app:hover .prompt {
+    opacity: 1;
+  }
+
+  .app-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .app-name {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .app-tag {
+    font-size: 0.7rem;
+    color: var(--green-dim);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .app-desc {
+    font-size: 0.72rem;
+    color: var(--green-dim);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .app-platforms {
+    font-size: 0.6rem;
+    color: var(--green-dim);
+    margin-top: 3px;
+    letter-spacing: 0.08em;
+  }
+
+  .prompt {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--green);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  /* Phosphor Suite group */
+  .group-phosphor .app { border-color: var(--border); }
+  .group-phosphor .app:hover { border-color: var(--green); }
+
+  /* Reference / utility group */
+  .group-reference .app-name { color: var(--amber); }
+  .group-reference .app { border-color: var(--amber-dim); }
+  .group-reference .app:hover {
+    border-color: var(--amber);
+    background: rgba(255, 184, 51, 0.04);
+  }
+  .group-reference .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(255,184,51,0.4), 0 0 20px rgba(255,184,51,0.3);
+  }
+  .group-reference .prompt { color: var(--amber); }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 8px 0 24px 0;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 16px 0;
+    font-size: 0.65rem;
+    color: var(--green-dim);
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+  }
+
+  .footer a {
+    color: var(--green-dim);
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: var(--green);
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .platforms {
+    font-size: 0.6rem;
+    color: var(--green-dim);
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 480px) {
+    .terminal { padding: 16px 12px; }
+    .header h1 { font-size: 0.9rem; letter-spacing: 0.2em; }
+    .app-name { font-size: 0.85rem; }
+    .app-row { flex-direction: column; gap: 2px; }
+    .app-tag { text-align: left; }
+    .prompt { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="terminal">
+
+  <div class="header">
+    <span class="corners tl">┌</span>
+    <span class="corners tr">┐</span>
+    <h1>STUART WOOLLEY</h1>
+    <div class="subtitle">iOS &amp; macOS APPLICATIONS</div>
+    <span class="corners bl">└</span>
+    <span class="corners br">┘</span>
+  </div>
+
+  <div class="platforms">iPhone · iPad · Mac</div>
+
+  <div class="section-label">▸ PHOSPHOR SUITE</div>
+  <div class="app-list group-phosphor">
+    <a class="app" href="https://apps.apple.com/ie/app/phosphorrad/id6759446973" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhosphorRad</span>
+        <span class="app-tag">RADIATION MONITOR</span>
+      </div>
+      <div class="app-desc">Real-time EPA Ireland environmental radiation monitoring station data.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/phosphorwx/id6759258127" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhosphorWX</span>
+        <span class="app-tag">AVIATION WEATHER</span>
+      </div>
+      <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/wxcon/id6759457691" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">WXCON</span>
+        <span class="app-tag">WEATHER THREAT CONSOLE</span>
+      </div>
+      <div class="app-desc">Irish weather warnings as a Cold War threat assessment. Met Éireann data, DEFCON aesthetic.</div>
+      <span class="prompt">▸</span>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">▸ REFERENCE</div>
+  <div class="app-list group-reference">
+    <a class="app" href="https://apps.apple.com/ie/app/country-dialling-codes/id394343831" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">Country Dialling Codes</span>
+        <span class="app-tag">TELECOMS REFERENCE</span>
+      </div>
+      <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/retrorail/id6758949328" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">RetroRail</span>
+        <span class="app-tag">IRISH RAIL</span>
+      </div>
+      <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/world-airports/id912803465" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">World Airports</span>
+        <span class="app-tag">GLOBAL REFERENCE</span>
+      </div>
+      <div class="app-desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps.</div>
+      <span class="prompt">▸</span>
+    </a>
+  </div>
+
+
+  <div class="footer">
+    DATA: EPA IRELAND · IRISH RAIL · MET ÉIREANN · NOAA/SWPC<br>
+    ALL APPS €0.99<br>
+    ALSO ON MAC: RetroRail<br>
+    <br>
+    UPDATED: 2026-02-24 10:56 UTC<br>
+    <br>
+    <span class="cursor-blink">█</span>
+  </div>
+
+</div>
+
+</body>
+</html>
