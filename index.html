@@ -78,7 +78,7 @@
   }
 
   .header h1 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: normal;
     letter-spacing: 0.3em;
     text-shadow: 0 0 10px var(--green-glow), 0 0 20px var(--green-glow);
@@ -87,13 +87,13 @@
 
   .header .subtitle {
     color: var(--green-dim);
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     letter-spacing: 0.15em;
   }
 
   .header .corners {
     position: absolute;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     color: var(--green-dim);
   }
   .header .corners.tl { top: 4px; left: 8px; }
@@ -103,7 +103,7 @@
 
   .section-label {
     color: var(--green-dim);
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     letter-spacing: 0.2em;
     margin-bottom: 12px;
     padding-left: 4px;
@@ -148,27 +148,27 @@
   }
 
   .app-name {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     letter-spacing: 0.08em;
     white-space: nowrap;
   }
 
   .app-tag {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     color: var(--green-dim);
     letter-spacing: 0.05em;
     white-space: nowrap;
   }
 
   .app-desc {
-    font-size: 0.72rem;
+    font-size: 0.88rem;
     color: var(--green-dim);
     margin-top: 4px;
     line-height: 1.4;
   }
 
   .app-platforms {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: var(--green-dim);
     margin-top: 3px;
     letter-spacing: 0.08em;
@@ -180,7 +180,7 @@
     top: 50%;
     transform: translateY(-50%);
     color: var(--green);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     opacity: 0;
     transition: opacity 0.15s ease;
   }
@@ -222,7 +222,7 @@
   .footer {
     text-align: center;
     padding: 16px 0;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     color: var(--green-dim);
     letter-spacing: 0.1em;
     line-height: 1.8;
@@ -245,7 +245,7 @@
   }
 
   .platforms {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: var(--green-dim);
     letter-spacing: 0.1em;
     text-align: center;
@@ -255,8 +255,8 @@
   /* Mobile adjustments */
   @media (max-width: 480px) {
     .terminal { padding: 16px 12px; }
-    .header h1 { font-size: 0.9rem; letter-spacing: 0.2em; }
-    .app-name { font-size: 0.85rem; }
+    .header h1 { font-size: 1.05rem; letter-spacing: 0.2em; }
+    .app-name { font-size: 1.0rem; }
     .app-row { flex-direction: column; gap: 2px; }
     .app-tag { text-align: left; }
     .prompt { display: none; }
@@ -286,6 +286,14 @@
         <span class="app-tag">RADIATION MONITOR</span>
       </div>
       <div class="app-desc">Real-time EPA Ireland environmental radiation monitoring station data.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/phosphorsol/id6759599340" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhosphorSol</span>
+        <span class="app-tag">SPACE WEATHER</span>
+      </div>
+      <div class="app-desc">Real-time space weather monitoring. Live NOAA/SWPC solar data on a retro CRT display.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="https://apps.apple.com/ie/app/phosphorwx/id6759258127" target="_blank" rel="noopener">
@@ -355,7 +363,7 @@
     DATA: EPA IRELAND · IRISH RAIL · MET ÉIREANN · NOAA/SWPC<br>
     ALL APPS €0.99<br>
     <br>
-    UPDATED: 2026-02-24 12:36 UTC<br>
+    UPDATED: 2026-02-25 08:54 UTC<br>
     <br>
     <span class="cursor-blink">█</span>
   </div>
