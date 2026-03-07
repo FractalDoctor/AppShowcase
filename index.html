@@ -21,6 +21,8 @@
     --green-glow: #33ff3344;
     --amber: #ffb833;
     --amber-dim: #8a6a1a;
+    --white: #cccccc;
+    --white-dim: #666666;
     --scanline: rgba(0,0,0,0.15);
     --border: #1a661a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
@@ -189,17 +191,33 @@
   .group-phosphor .app { border-color: var(--border); }
   .group-phosphor .app:hover { border-color: var(--green); }
 
-  /* Reference / utility group */
-  .group-reference .app-name { color: var(--amber); }
-  .group-reference .app { border-color: var(--amber-dim); }
-  .group-reference .app:hover {
+  /* RetroCRT group — green (same as Phosphor) */
+  .group-retrocrt .app { border-color: var(--border); }
+  .group-retrocrt .app:hover { border-color: var(--green); }
+
+  /* Datum group — amber */
+  .group-datum .app-name { color: var(--amber); }
+  .group-datum .app { border-color: var(--amber-dim); }
+  .group-datum .app:hover {
     border-color: var(--amber);
     background: rgba(255, 184, 51, 0.04);
   }
-  .group-reference .app:hover .app-name {
+  .group-datum .app:hover .app-name {
     text-shadow: 0 0 10px rgba(255,184,51,0.4), 0 0 20px rgba(255,184,51,0.3);
   }
-  .group-reference .prompt { color: var(--amber); }
+  .group-datum .prompt { color: var(--amber); }
+
+  /* General group — white/grey */
+  .group-general .app-name { color: var(--white); }
+  .group-general .app { border-color: var(--white-dim); }
+  .group-general .app:hover {
+    border-color: var(--white);
+    background: rgba(204, 204, 204, 0.04);
+  }
+  .group-general .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(204,204,204,0.4), 0 0 20px rgba(204,204,204,0.3);
+  }
+  .group-general .prompt { color: var(--white); }
 
   /* macOS group — cyan accent */
   .group-macos .app-name { color: #33ccff; }
@@ -336,28 +354,12 @@
       <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display.</div>
       <span class="prompt">▸</span>
     </a>
-    <a class="app" href="https://apps.apple.com/ie/app/wxcon/id6759457691" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">WXCON</span>
-        <span class="app-tag">WEATHER THREAT CONSOLE</span>
-      </div>
-      <div class="app-desc">Irish weather warnings as a Cold War threat assessment. Met Éireann data, DEFCON aesthetic.</div>
-      <span class="prompt">▸</span>
-    </a>
   </div>
 
   <hr class="divider">
 
-  <div class="section-label">▸ REFERENCE</div>
-  <div class="app-list group-reference">
-    <a class="app" href="https://apps.apple.com/ie/app/country-dialling-codes/id394343831" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">Country Dialling Codes</span>
-        <span class="app-tag">TELECOMS REFERENCE</span>
-      </div>
-      <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
-      <span class="prompt">▸</span>
-    </a>
+  <div class="section-label">▸ RETRO CRT</div>
+  <div class="app-list group-retrocrt">
     <a class="app" href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">GRIDCON</span>
@@ -372,6 +374,28 @@
         <span class="app-tag">IRISH RAIL TRAVEL</span>
       </div>
       <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/wxcon/id6759457691" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">WXCON</span>
+        <span class="app-tag">WEATHER THREAT CONSOLE</span>
+      </div>
+      <div class="app-desc">Irish weather warnings as a Cold War threat assessment. Met Éireann data, DEFCON aesthetic.</div>
+      <span class="prompt">▸</span>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">▸ GENERAL</div>
+  <div class="app-list group-general">
+    <a class="app" href="https://apps.apple.com/ie/app/country-dialling-codes/id394343831" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">Country Dialling Codes</span>
+        <span class="app-tag">TELECOMS REFERENCE</span>
+      </div>
+      <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="https://apps.apple.com/ie/app/world-airports/id912803465" target="_blank" rel="noopener">
@@ -403,7 +427,7 @@
     DATA: EPA IRELAND · IRISH RAIL · MET ÉIREANN · NOAA/SWPC<br>
     ALL APPS €0.99<br>
     <br>
-    UPDATED: 2026-03-05 08:23 UTC<br>
+    UPDATED: 2026-03-07 15:35 UTC<br>
     <br>
     <span class="cursor-blink">█</span>
   </div>
