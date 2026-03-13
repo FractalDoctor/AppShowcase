@@ -23,6 +23,8 @@
     --amber-dim: #8a6a1a;
     --white: #cccccc;
     --white-dim: #666666;
+    --nacht: #6699ff;
+    --nacht-dim: #334d80;
     --scanline: rgba(0,0,0,0.22);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
@@ -219,6 +221,18 @@
   }
   .group-datum .prompt { color: var(--amber); }
 
+  /* Nacht group — cool blue */
+  .group-nacht .app-name { color: #6699ff; }
+  .group-nacht .app { border-color: #334d80; }
+  .group-nacht .app:hover {
+    border-color: #6699ff;
+    background: rgba(102, 153, 255, 0.04);
+  }
+  .group-nacht .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(102,153,255,0.4), 0 0 20px rgba(102,153,255,0.3);
+  }
+  .group-nacht .prompt { color: #6699ff; }
+
   /* General group — white/grey */
   .group-general .app-name { color: var(--white); }
   .group-general .app { border-color: var(--white-dim); }
@@ -370,7 +384,7 @@
       <div class="status-bar">
         <span class="status-item">[ SYSTEM READY ]</span>
         <span class="status-item">[ 17 APPS LOADED ]</span>
-        <span class="status-item">[ 2026-03-13 08:24 UTC ]</span>
+        <span class="status-item">[ 2026-03-13 08:26 UTC ]</span>
       </div>
 
       <div class="header">
@@ -517,6 +531,20 @@
 
   <hr class="divider">
 
+  <div class="section-label">▸ NACHT SUITE</div>
+  <div class="app-list group-nacht">
+    <a class="app" href="https://apps.apple.com/us/app/nachtlander/id6760370010" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">NachtLander</span>
+        <span class="app-tag">RETRO LUNAR LANDER</span>
+      </div>
+      <div class="app-desc">1969 Storer physics lunar lander. Ten celestial bodies, phosphor terminal aesthetic, no undo.</div>
+      <span class="prompt">▸</span>
+    </a>
+  </div>
+
+  <hr class="divider">
+
   <div class="section-label">▸ GENERAL</div>
   <div class="app-list group-general">
     <a class="app" href="https://apps.apple.com/us/app/country-dialling-codes/id394343831" target="_blank" rel="noopener">
@@ -525,14 +553,6 @@
         <span class="app-tag">TELECOMS REFERENCE</span>
       </div>
       <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/us/app/nachtlander/id6760370010" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">NachtLander</span>
-        <span class="app-tag">RETRO LUNAR LANDER</span>
-      </div>
-      <div class="app-desc">1969 Storer physics lunar lander. Ten celestial bodies, phosphor terminal aesthetic, no undo.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="https://apps.apple.com/us/app/world-airports/id912803465" target="_blank" rel="noopener">
