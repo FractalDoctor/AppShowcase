@@ -262,6 +262,30 @@
   }
   .group-esoteric .prompt { color: #cc66ff; }
 
+  /* Aviation group — sky blue */
+  .group-aviation .app-name { color: #44aaff; }
+  .group-aviation .app { border-color: #225580; }
+  .group-aviation .app:hover {
+    border-color: #44aaff;
+    background: rgba(68, 170, 255, 0.04);
+  }
+  .group-aviation .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(68,170,255,0.4), 0 0 20px rgba(68,170,255,0.3);
+  }
+  .group-aviation .prompt { color: #44aaff; }
+
+  /* Weather group — storm slate */
+  .group-weather .app-name { color: #88aacc; }
+  .group-weather .app { border-color: #445566; }
+  .group-weather .app:hover {
+    border-color: #88aacc;
+    background: rgba(136, 170, 204, 0.04);
+  }
+  .group-weather .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(136,170,204,0.4), 0 0 20px rgba(136,170,204,0.3);
+  }
+  .group-weather .prompt { color: #88aacc; }
+
   /* Astronomy group — stellar teal */
   .group-astronomy .app-name { color: #33eebb; }
   .group-astronomy .app { border-color: #1a7760; }
@@ -437,7 +461,7 @@
       <div class="status-bar">
         <span class="status-item">[ SYSTEM READY ]</span>
         <span class="status-item">[ 28 APPS LOADED ]</span>
-        <span class="status-item">[ 2026-03-26 09:57 UTC ]</span>
+        <span class="status-item">[ 2026-03-26 10:03 UTC ]</span>
       </div>
 
       <div class="header">
@@ -466,14 +490,6 @@
         <span class="app-tag">RIVER MONITOR</span>
       </div>
       <div class="app-desc">Real-time Irish river level monitor. 453 OPW hydrometric stations, flood severity mapping, and push alerts.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/ie/app/phosphorhertz/id6759729656" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">PhosphorHertz</span>
-        <span class="app-tag">HF PROPAGATION</span>
-      </div>
-      <div class="app-desc">Real-time HF radio propagation monitor. NOAA space weather data translated into band-by-band conditions.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="https://apps.apple.com/ie/app/phosphororbit/id6759662924" target="_blank" rel="noopener">
@@ -508,18 +524,18 @@
       <div class="app-desc">Real-time Irish coastal tide monitor. 38 stations via Marine Institute, wave buoys, and weather data.</div>
       <span class="prompt">▸</span>
     </a>
-    <a class="app" href="https://apps.apple.com/ie/app/phosphorwx/id6759258127" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">PhosphorWX</span>
-        <span class="app-tag">AVIATION WEATHER</span>
-      </div>
-      <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display.</div>
-      <span class="prompt">▸</span>
-    </a>
   </div>
 
   <div class="section-sublabel">▸ COLD WAR SWL</div>
   <div class="app-list group-phosphor">
+    <a class="app" href="https://apps.apple.com/ie/app/phantomgram/id6761019876" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhantomGram</span>
+        <span class="app-tag">SPECTRUM PAINTER</span>
+      </div>
+      <div class="app-desc">Spectrum painting for amateur radio. Transmit and decode images painted onto SDR waterfall displays.</div>
+      <span class="prompt">▸</span>
+    </a>
     <a class="app" href="https://apps.apple.com/ie/app/phosphorcw/id6760191562" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PhosphorCW</span>
@@ -534,6 +550,14 @@
         <span class="app-tag">RF CALCULATOR</span>
       </div>
       <div class="app-desc">Ten RF and antenna calculators for amateur radio. Dipole lengths, path loss, SWR, link budgets, impedance matching. No network required.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/phosphorhertz/id6759729656" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhosphorHertz</span>
+        <span class="app-tag">HF PROPAGATION</span>
+      </div>
+      <div class="app-desc">Real-time HF radio propagation monitor. NOAA space weather data translated into band-by-band conditions.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="https://apps.apple.com/ie/app/phosphorrtty/id6760180586" target="_blank" rel="noopener">
@@ -568,6 +592,42 @@
 
   <hr class="divider">
 
+  <div class="section-label">▸ AVIATION</div>
+  <div class="app-list group-aviation">
+    <a class="app" href="https://apps.apple.com/ie/app/phosphorwx/id6759258127" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhosphorWX</span>
+        <span class="app-tag">AVIATION WEATHER</span>
+      </div>
+      <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/world-airports/id912803465" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">World Airports</span>
+        <span class="app-tag">GLOBAL REFERENCE</span>
+      </div>
+      <div class="app-desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps.</div>
+      <span class="prompt">▸</span>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">▸ WEATHER</div>
+  <div class="app-list group-weather">
+    <a class="app" href="https://apps.apple.com/ie/app/wxcon/id6759457691" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">WXCON</span>
+        <span class="app-tag">WEATHER THREAT CONSOLE</span>
+      </div>
+      <div class="app-desc">Irish weather warnings as a Cold War threat assessment. Met Éireann and Open-Meteo data, DEFCON aesthetic.</div>
+      <span class="prompt">▸</span>
+    </a>
+  </div>
+
+  <hr class="divider">
+
   <div class="section-label">▸ RETRO CRT</div>
   <div class="app-list group-retrocrt">
     <a class="app" href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener">
@@ -584,14 +644,6 @@
         <span class="app-tag">IRISH RAIL TRAVEL</span>
       </div>
       <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/ie/app/wxcon/id6759457691" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">WXCON</span>
-        <span class="app-tag">WEATHER THREAT CONSOLE</span>
-      </div>
-      <div class="app-desc">Irish weather warnings as a Cold War threat assessment. Met Éireann and Open-Meteo data, DEFCON aesthetic.</div>
       <span class="prompt">▸</span>
     </a>
   </div>
@@ -703,22 +755,6 @@
         <span class="app-tag">TELECOMS REFERENCE</span>
       </div>
       <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/ie/app/phantomgram/id6761019876" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">PhantomGram</span>
-        <span class="app-tag">UTILITIES</span>
-      </div>
-      <div class="app-desc">Paint the Airwaves Spectrum painting for amateur radio.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/ie/app/world-airports/id912803465" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">World Airports</span>
-        <span class="app-tag">GLOBAL REFERENCE</span>
-      </div>
-      <div class="app-desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps.</div>
       <span class="prompt">▸</span>
     </a>
   </div>
