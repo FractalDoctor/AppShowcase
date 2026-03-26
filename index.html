@@ -25,7 +25,7 @@
     --white-dim: #666666;
     --nacht: #6699ff;
     --nacht-dim: #334d80;
-    --scanline: rgba(0,0,0,0.22);
+    --scanline: rgba(0,0,0,0.35);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
   }
@@ -48,9 +48,9 @@
     background: repeating-linear-gradient(
       0deg,
       transparent,
-      transparent 2px,
-      var(--scanline) 2px,
-      var(--scanline) 4px
+      transparent 3px,
+      var(--scanline) 3px,
+      var(--scanline) 6px
     );
     pointer-events: none;
     z-index: 1000;
@@ -485,7 +485,7 @@
   }
 
   .frame-top, .frame-bottom {
-    color: var(--border);
+    color: var(--green-dim);
     font-size: 0.85rem;
     line-height: 1;
     white-space: nowrap;
@@ -498,7 +498,7 @@
     top: 0;
     bottom: 0;
     width: 1ch;
-    color: var(--border);
+    color: var(--green-dim);
     font-size: 0.85rem;
     display: flex;
     flex-direction: column;
@@ -564,14 +564,14 @@
       <div class="status-bar">
         <span class="status-item">[ SYSTEM READY ]</span>
         <span class="status-item">[ 28 APPS LOADED ]</span>
-        <span class="status-item">[ 2026-03-26 10:39 UTC ]</span>
+        <span class="status-item">[ 2026-03-26 10:41 UTC ]</span>
       </div>
 
       <div class="header">
         <span class="corners tl">┌</span>
         <span class="corners tr">┐</span>
         <h1>DR STUART WOOLLEY</h1>
-        <div class="subtitle">iOS &amp; macOS APPLICATIONS</div>
+        <div class="subtitle">iOS &amp; SPECIFIC macOS APPLICATIONS</div>
         <span class="corners bl">└</span>
         <span class="corners br">┘</span>
       </div>
@@ -881,7 +881,7 @@
   </details>
 
   <details class="section group-macos">
-    <summary class="section-header">macOS APPLICATIONS <span class="app-count">[1]</span></summary>
+    <summary class="section-header">SPECIFIC macOS APPLICATIONS <span class="app-count">[1]</span></summary>
     <div class="app-list group-macos">
     <a class="app" href="https://apps.apple.com/ie/app/retrorail/id6758949328" target="_blank" rel="noopener">
       <div class="app-row">
