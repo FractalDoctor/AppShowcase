@@ -252,6 +252,36 @@
   .group-retrocrt .app { border-color: var(--border); }
   .group-retrocrt .app:hover { border-color: var(--green); }
 
+  /* Orbital group — cold starlight */
+  .group-orbital > .section-header { color: #aaccff; text-shadow: 0 0 8px rgba(170,204,255,0.3); }
+  .group-orbital > .section-header:hover { color: #ccddff; text-shadow: 0 0 12px rgba(170,204,255,0.5); }
+  .group-orbital > .section-header .app-count { color: #556688; }
+  .group-orbital .app-name { color: #aaccff; }
+  .group-orbital .app { border-color: #556688; }
+  .group-orbital .app:hover {
+    border-color: #aaccff;
+    background: rgba(170, 204, 255, 0.04);
+  }
+  .group-orbital .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(170,204,255,0.4), 0 0 20px rgba(170,204,255,0.3);
+  }
+  .group-orbital .prompt { color: #aaccff; }
+
+  /* Environmental group — earthy green */
+  .group-environmental > .section-header { color: #66cc88; text-shadow: 0 0 8px rgba(102,204,136,0.3); }
+  .group-environmental > .section-header:hover { color: #88ddaa; text-shadow: 0 0 12px rgba(102,204,136,0.5); }
+  .group-environmental > .section-header .app-count { color: #336644; }
+  .group-environmental .app-name { color: #66cc88; }
+  .group-environmental .app { border-color: #336644; }
+  .group-environmental .app:hover {
+    border-color: #66cc88;
+    background: rgba(102, 204, 136, 0.04);
+  }
+  .group-environmental .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(102,204,136,0.4), 0 0 20px rgba(102,204,136,0.3);
+  }
+  .group-environmental .prompt { color: #66cc88; }
+
   /* Datum group — amber */
   .group-datum > .section-header { color: var(--amber); text-shadow: 0 0 8px rgba(255,184,51,0.3); }
   .group-datum > .section-header:hover { color: #ffcc66; text-shadow: 0 0 12px rgba(255,184,51,0.5); }
@@ -508,7 +538,7 @@
       <div class="status-bar">
         <span class="status-item">[ SYSTEM READY ]</span>
         <span class="status-item">[ 28 APPS LOADED ]</span>
-        <span class="status-item">[ 2026-03-26 10:14 UTC ]</span>
+        <span class="status-item">[ 2026-03-26 10:15 UTC ]</span>
       </div>
 
       <div class="header">
@@ -521,23 +551,15 @@
       </div>
 
 
-  <details class="section group-phosphor">
-    <summary class="section-header">PHOSPHOR SUITE <span class="app-count">[6]</span></summary>
-    <div class="app-list group-phosphor">
+  <details class="section group-orbital">
+    <summary class="section-header">ORBITAL OBSERVATION <span class="app-count">[3]</span></summary>
+    <div class="app-list group-orbital">
     <a class="app" href="https://apps.apple.com/ie/app/phosphorbeam/id6759958519" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PhosphorBeam</span>
         <span class="app-tag">SATELLITE TRACKER</span>
       </div>
       <div class="app-desc">Real-time amateur radio satellite tracker. SGP4 propagation, pass predictions, and Doppler-corrected frequencies.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/ie/app/phosphorflow/id6760657119" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">PhosphorFlow</span>
-        <span class="app-tag">RIVER MONITOR</span>
-      </div>
-      <div class="app-desc">Real-time Irish river level monitor. 453 OPW hydrometric stations, flood severity mapping, and push alerts.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="https://apps.apple.com/ie/app/phosphororbit/id6759662924" target="_blank" rel="noopener">
@@ -548,20 +570,34 @@
       <div class="app-desc">Live NORAD catalogue tracking with SGP4 propagation. Cold War-era radar scope aesthetic.</div>
       <span class="prompt">▸</span>
     </a>
-    <a class="app" href="https://apps.apple.com/ie/app/phosphorrad/id6759446973" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">PhosphorRad</span>
-        <span class="app-tag">RADIATION MONITOR</span>
-      </div>
-      <div class="app-desc">Real-time EPA Ireland environmental radiation monitoring station data.</div>
-      <span class="prompt">▸</span>
-    </a>
     <a class="app" href="https://apps.apple.com/ie/app/phosphorsol/id6759599340" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PhosphorSol</span>
         <span class="app-tag">SPACE WEATHER</span>
       </div>
       <div class="app-desc">Real-time space weather monitoring. Live NOAA/SWPC solar data on a retro CRT display.</div>
+      <span class="prompt">▸</span>
+    </a>
+    </div>
+  </details>
+
+  <details class="section group-environmental">
+    <summary class="section-header">ENVIRONMENTAL MONITORING <span class="app-count">[3]</span></summary>
+    <div class="app-list group-environmental">
+    <a class="app" href="https://apps.apple.com/ie/app/phosphorflow/id6760657119" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhosphorFlow</span>
+        <span class="app-tag">RIVER MONITOR</span>
+      </div>
+      <div class="app-desc">Real-time Irish river level monitor. 453 OPW hydrometric stations, flood severity mapping, and push alerts.</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/ie/app/phosphorrad/id6759446973" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">PhosphorRad</span>
+        <span class="app-tag">RADIATION MONITOR</span>
+      </div>
+      <div class="app-desc">Real-time EPA Ireland environmental radiation monitoring station data.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="https://apps.apple.com/ie/app/phosphortide/id6759836073" target="_blank" rel="noopener">
