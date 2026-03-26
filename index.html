@@ -68,7 +68,7 @@
 
   .terminal {
     max-width: 720px;
-    margin: 0 auto;
+    margin: 16px auto;
     padding: 24px 20px;
     border: 1px solid var(--border);
     position: relative;
@@ -476,48 +476,6 @@
     margin-bottom: 24px;
   }
 
-  /* ASCII border frame */
-  .crt-frame {
-    max-width: 780px;
-    margin: 16px auto;
-    padding: 0;
-    position: relative;
-  }
-
-  .frame-top, .frame-bottom {
-    color: var(--green-dim);
-    font-size: 0.85rem;
-    line-height: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-align: center;
-  }
-
-  .frame-side {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1ch;
-    color: var(--green-dim);
-    font-size: 0.85rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-  }
-  .frame-side.left { left: 0; }
-  .frame-side.right { right: 0; }
-  .frame-side-fill {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    writing-mode: vertical-lr;
-    overflow: hidden;
-  }
-
-  .frame-content {
-    padding: 0 20px;
-  }
 
   /* Status bar */
   .status-bar {
@@ -539,9 +497,6 @@
   /* Mobile adjustments */
   @media (max-width: 480px) {
     .terminal { padding: 16px 12px; }
-    .crt-frame { margin: 8px; }
-    .frame-side { display: none; }
-    .frame-content { padding: 0 8px; }
     .header h1 { font-size: 1.05rem; letter-spacing: 0.2em; }
     .app-name { font-size: 1.0rem; }
     .app-row { flex-direction: column; gap: 2px; }
@@ -553,18 +508,12 @@
 </head>
 <body>
 
-<div class="crt-frame">
-  <div class="frame-top">╔════════════════════════════════════════════════════════════════════════════╗</div>
-  <div class="frame-side left"><div class="frame-side-fill">║</div></div>
-  <div class="frame-side right"><div class="frame-side-fill">║</div></div>
-  <div class="frame-content">
-
-    <div class="terminal">
+<div class="terminal">
 
       <div class="status-bar">
         <span class="status-item">[ SYSTEM READY ]</span>
         <span class="status-item">[ 28 APPS LOADED ]</span>
-        <span class="status-item">[ 2026-03-26 10:44 UTC ]</span>
+        <span class="status-item">[ 2026-03-26 10:45 UTC ]</span>
       </div>
 
       <span class="corners tl">┌</span>
@@ -902,10 +851,6 @@
         <span class="cursor-blink">█</span>
       </div>
 
-    </div>
-
-  </div>
-  <div class="frame-bottom">╚════════════════════════════════════════════════════════════════════════════╝</div>
 </div>
 
 </body>
