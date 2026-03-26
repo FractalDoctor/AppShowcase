@@ -105,13 +105,37 @@
   .header .corners.bl { bottom: 4px; left: 8px; }
   .header .corners.br { bottom: 4px; right: 8px; }
 
-  .section-label {
+  .section {
+    margin-bottom: 8px;
+  }
+
+  .section-header {
     color: var(--green);
     font-size: 1.05rem;
     letter-spacing: 0.2em;
-    margin-bottom: 12px;
-    padding-left: 4px;
+    padding: 10px 4px;
+    cursor: pointer;
+    list-style: none;
     text-shadow: 0 0 8px var(--green-glow);
+    transition: color 0.15s ease, text-shadow 0.15s ease;
+  }
+  .section-header::-webkit-details-marker {
+    display: none;
+  }
+  .section-header::before {
+    content: '▸ ';
+  }
+  details[open] > .section-header::before {
+    content: '▾ ';
+  }
+  .section-header:hover {
+    color: #66ff66;
+    text-shadow: 0 0 12px var(--green-glow), 0 0 24px var(--green-glow);
+  }
+  .section-header .app-count {
+    color: var(--green-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
   }
 
   .section-intro {
@@ -119,7 +143,7 @@
     color: #aa3333;
     letter-spacing: 0.05em;
     line-height: 1.5;
-    margin: -4px 0 16px 4px;
+    margin: 4px 0 12px 4px;
     padding-right: 20px;
   }
   .section-intro a {
@@ -135,9 +159,11 @@
     color: var(--green);
     font-size: 0.9rem;
     letter-spacing: 0.15em;
-    margin-bottom: 10px;
-    padding-left: 16px;
+    margin: 12px 0 10px 16px;
     text-shadow: 0 0 8px var(--green-glow);
+  }
+  .section-sublabel::before {
+    content: '▸ ';
   }
 
   .app-list {
@@ -227,6 +253,9 @@
   .group-retrocrt .app:hover { border-color: var(--green); }
 
   /* Datum group — amber */
+  .group-datum > .section-header { color: var(--amber); text-shadow: 0 0 8px rgba(255,184,51,0.3); }
+  .group-datum > .section-header:hover { color: #ffcc66; text-shadow: 0 0 12px rgba(255,184,51,0.5); }
+  .group-datum > .section-header .app-count { color: var(--amber-dim); }
   .group-datum .app-name { color: var(--amber); }
   .group-datum .app { border-color: var(--amber-dim); }
   .group-datum .app:hover {
@@ -239,6 +268,9 @@
   .group-datum .prompt { color: var(--amber); }
 
   /* Nacht group — cool blue */
+  .group-nacht > .section-header { color: #6699ff; text-shadow: 0 0 8px rgba(102,153,255,0.3); }
+  .group-nacht > .section-header:hover { color: #88bbff; text-shadow: 0 0 12px rgba(102,153,255,0.5); }
+  .group-nacht > .section-header .app-count { color: #334d80; }
   .group-nacht .app-name { color: #6699ff; }
   .group-nacht .app { border-color: #334d80; }
   .group-nacht .app:hover {
@@ -251,6 +283,9 @@
   .group-nacht .prompt { color: #6699ff; }
 
   /* Esoteric group — mystic purple */
+  .group-esoteric > .section-header { color: #cc66ff; text-shadow: 0 0 8px rgba(204,102,255,0.3); }
+  .group-esoteric > .section-header:hover { color: #dd88ff; text-shadow: 0 0 12px rgba(204,102,255,0.5); }
+  .group-esoteric > .section-header .app-count { color: #663380; }
   .group-esoteric .app-name { color: #cc66ff; }
   .group-esoteric .app { border-color: #663380; }
   .group-esoteric .app:hover {
@@ -263,6 +298,9 @@
   .group-esoteric .prompt { color: #cc66ff; }
 
   /* Aviation group — sky blue */
+  .group-aviation > .section-header { color: #44aaff; text-shadow: 0 0 8px rgba(68,170,255,0.3); }
+  .group-aviation > .section-header:hover { color: #66bbff; text-shadow: 0 0 12px rgba(68,170,255,0.5); }
+  .group-aviation > .section-header .app-count { color: #225580; }
   .group-aviation .app-name { color: #44aaff; }
   .group-aviation .app { border-color: #225580; }
   .group-aviation .app:hover {
@@ -275,6 +313,9 @@
   .group-aviation .prompt { color: #44aaff; }
 
   /* Weather group — storm slate */
+  .group-weather > .section-header { color: #88aacc; text-shadow: 0 0 8px rgba(136,170,204,0.3); }
+  .group-weather > .section-header:hover { color: #aaccee; text-shadow: 0 0 12px rgba(136,170,204,0.5); }
+  .group-weather > .section-header .app-count { color: #445566; }
   .group-weather .app-name { color: #88aacc; }
   .group-weather .app { border-color: #445566; }
   .group-weather .app:hover {
@@ -287,6 +328,9 @@
   .group-weather .prompt { color: #88aacc; }
 
   /* Astronomy group — stellar teal */
+  .group-astronomy > .section-header { color: #33eebb; text-shadow: 0 0 8px rgba(51,238,187,0.3); }
+  .group-astronomy > .section-header:hover { color: #55ffcc; text-shadow: 0 0 12px rgba(51,238,187,0.5); }
+  .group-astronomy > .section-header .app-count { color: #1a7760; }
   .group-astronomy .app-name { color: #33eebb; }
   .group-astronomy .app { border-color: #1a7760; }
   .group-astronomy .app:hover {
@@ -299,6 +343,9 @@
   .group-astronomy .prompt { color: #33eebb; }
 
   /* Grand Game group — corporate red */
+  .group-grandgame > .section-header { color: #ff4444; text-shadow: 0 0 8px rgba(255,68,68,0.3); }
+  .group-grandgame > .section-header:hover { color: #ff6666; text-shadow: 0 0 12px rgba(255,68,68,0.5); }
+  .group-grandgame > .section-header .app-count { color: #802222; }
   .group-grandgame .app-name { color: #ff4444; }
   .group-grandgame .app { border-color: #802222; }
   .group-grandgame .app:hover {
@@ -311,6 +358,9 @@
   .group-grandgame .prompt { color: #ff4444; }
 
   /* General group — white/grey */
+  .group-general > .section-header { color: var(--white); text-shadow: 0 0 8px rgba(204,204,204,0.3); }
+  .group-general > .section-header:hover { color: #eeeeee; text-shadow: 0 0 12px rgba(204,204,204,0.5); }
+  .group-general > .section-header .app-count { color: var(--white-dim); }
   .group-general .app-name { color: var(--white); }
   .group-general .app { border-color: var(--white-dim); }
   .group-general .app:hover {
@@ -323,6 +373,9 @@
   .group-general .prompt { color: var(--white); }
 
   /* macOS group — cyan accent */
+  .group-macos > .section-header { color: #33ccff; text-shadow: 0 0 8px rgba(51,204,255,0.3); }
+  .group-macos > .section-header:hover { color: #55ddff; text-shadow: 0 0 12px rgba(51,204,255,0.5); }
+  .group-macos > .section-header .app-count { color: #1a6680; }
   .group-macos .app-name { color: #33ccff; }
   .group-macos .app { border-color: #1a6680; }
   .group-macos .app:hover {
@@ -455,7 +508,7 @@
       <div class="status-bar">
         <span class="status-item">[ SYSTEM READY ]</span>
         <span class="status-item">[ 28 APPS LOADED ]</span>
-        <span class="status-item">[ 2026-03-26 10:05 UTC ]</span>
+        <span class="status-item">[ 2026-03-26 10:12 UTC ]</span>
       </div>
 
       <div class="header">
@@ -468,8 +521,9 @@
       </div>
 
 
-  <div class="section-label">▸ PHOSPHOR SUITE</div>
-  <div class="app-list group-phosphor">
+  <details class="section group-phosphor">
+    <summary class="section-header">PHOSPHOR SUITE <span class="app-count">[12]</span></summary>
+    <div class="app-list group-phosphor">
     <a class="app" href="https://apps.apple.com/ie/app/phosphorbeam/id6759958519" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PhosphorBeam</span>
@@ -518,10 +572,9 @@
       <div class="app-desc">Real-time Irish coastal tide monitor. 38 stations via Marine Institute, wave buoys, and weather data.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
-
-  <div class="section-sublabel">▸ COLD WAR SWL</div>
-  <div class="app-list group-phosphor">
+    </div>
+    <div class="section-sublabel">COLD WAR SWL</div>
+    <div class="app-list group-phosphor">
     <a class="app" href="https://apps.apple.com/ie/app/phantomgram/id6761019876" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PhantomGram</span>
@@ -570,10 +623,12 @@
       <div class="app-desc">Slow Scan Television encoder and decoder. Encode or decode SSTV images via your iPhone microphone — ten modes including Scottie, Martin, and Robot.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ ASTRONOMY</div>
-  <div class="app-list group-astronomy">
+  <details class="section group-astronomy">
+    <summary class="section-header">ASTRONOMY <span class="app-count">[1]</span></summary>
+    <div class="app-list group-astronomy">
     <a class="app" href="https://apps.apple.com/ie/app/phosphoroccult/id6760973134" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PhosphorOccult</span>
@@ -582,10 +637,12 @@
       <div class="app-desc">Occultation Prediction Instrument Predict when the Moon, planets, and asteroids pass in front of stars.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ AVIATION</div>
-  <div class="app-list group-aviation">
+  <details class="section group-aviation">
+    <summary class="section-header">AVIATION <span class="app-count">[2]</span></summary>
+    <div class="app-list group-aviation">
     <a class="app" href="https://apps.apple.com/ie/app/phosphorwx/id6759258127" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PhosphorWX</span>
@@ -602,10 +659,12 @@
       <div class="app-desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ WEATHER</div>
-  <div class="app-list group-weather">
+  <details class="section group-weather">
+    <summary class="section-header">WEATHER <span class="app-count">[1]</span></summary>
+    <div class="app-list group-weather">
     <a class="app" href="https://apps.apple.com/ie/app/wxcon/id6759457691" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">WXCON</span>
@@ -614,10 +673,12 @@
       <div class="app-desc">Irish weather warnings as a Cold War threat assessment. Met Éireann and Open-Meteo data, DEFCON aesthetic.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ RETRO CRT</div>
-  <div class="app-list group-retrocrt">
+  <details class="section group-retrocrt">
+    <summary class="section-header">RETRO CRT <span class="app-count">[2]</span></summary>
+    <div class="app-list group-retrocrt">
     <a class="app" href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">GRIDCON</span>
@@ -634,10 +695,12 @@
       <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ DATUM MARITIME APPS</div>
-  <div class="app-list group-datum">
+  <details class="section group-datum">
+    <summary class="section-header">DATUM MARITIME APPS <span class="app-count">[4]</span></summary>
+    <div class="app-list group-datum">
     <a class="app" href="https://apps.apple.com/ie/app/datumdeep/id6760313463" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">DatumDeep</span>
@@ -670,10 +733,12 @@
       <div class="app-desc">IALA buoyage system reference and exam prep. All 12 mark types, animated lights, Region A/B, and quiz modes.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ NACHT RETROGAMING SUITE</div>
-  <div class="app-list group-nacht">
+  <details class="section group-nacht">
+    <summary class="section-header">NACHT RETROGAMING SUITE <span class="app-count">[2]</span></summary>
+    <div class="app-list group-nacht">
     <a class="app" href="https://apps.apple.com/ie/app/nachtcloak/id6760724817" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">NachtCloak</span>
@@ -690,10 +755,12 @@
       <div class="app-desc">1969 Storer physics lunar lander. Ten celestial bodies, phosphor terminal aesthetic, no undo.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ ESOTERIC</div>
-  <div class="app-list group-esoteric">
+  <details class="section group-esoteric">
+    <summary class="section-header">ESOTERIC <span class="app-count">[2]</span></summary>
+    <div class="app-list group-esoteric">
     <a class="app" href="https://apps.apple.com/ie/app/mansions-of-the-moon/id479654763" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">Mansions of the Moon</span>
@@ -710,11 +777,13 @@
       <div class="app-desc">Track the moon through the eyes of seven ancient and modern spiritual traditions.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ THE GRAND GAME OF SOFTWARE ENGINEERING</div>
-  <div class="section-intro">Apps derived from the <a href="https://medium.com/the-grand-game-of-software-engineering" target="_blank" rel="noopener">essays on Medium</a> exploring the absurdity of corporate software engineering — meetings, managers, and the quiet heroism of actually writing code.</div>
-  <div class="app-list group-grandgame">
+  <details class="section group-grandgame">
+    <summary class="section-header">THE GRAND GAME OF SOFTWARE ENGINEERING <span class="app-count">[1]</span></summary>
+    <div class="section-intro">Apps derived from the <a href="https://medium.com/the-grand-game-of-software-engineering" target="_blank" rel="noopener">essays on Medium</a> exploring the absurdity of corporate software engineering — meetings, managers, and the quiet heroism of actually writing code.</div>
+    <div class="app-list group-grandgame">
     <a class="app" href="https://apps.apple.com/ie/app/peakmanager/id6760596770" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">PeakManager</span>
@@ -723,10 +792,12 @@
       <div class="app-desc">How much manager are you? 420 questions measuring your Corporate Management Energy™ on a scale of 0 to 100.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ GENERAL</div>
-  <div class="app-list group-general">
+  <details class="section group-general">
+    <summary class="section-header">GENERAL <span class="app-count">[1]</span></summary>
+    <div class="app-list group-general">
     <a class="app" href="https://apps.apple.com/ie/app/country-dialling-codes/id394343831" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">Country Dialling Codes</span>
@@ -735,10 +806,12 @@
       <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
-  <div class="section-label">▸ macOS APPLICATIONS</div>
-  <div class="app-list group-macos">
+  <details class="section group-macos">
+    <summary class="section-header">macOS APPLICATIONS <span class="app-count">[1]</span></summary>
+    <div class="app-list group-macos">
     <a class="app" href="https://apps.apple.com/ie/app/retrorail/id6758949328" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">RetroRail</span>
@@ -747,7 +820,8 @@
       <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
       <span class="prompt">▸</span>
     </a>
-  </div>
+    </div>
+  </details>
 
 
       <div class="footer">
