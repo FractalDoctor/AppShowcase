@@ -248,9 +248,35 @@
   .group-phosphor .app { border-color: var(--border); }
   .group-phosphor .app:hover { border-color: var(--green); }
 
-  /* RetroCRT group — green (same as Phosphor) */
-  .group-retrocrt .app { border-color: var(--border); }
-  .group-retrocrt .app:hover { border-color: var(--green); }
+  /* Energy group — electric yellow */
+  .group-energy > .section-header { color: #ffdd44; text-shadow: 0 0 8px rgba(255,221,68,0.3); }
+  .group-energy > .section-header:hover { color: #ffee77; text-shadow: 0 0 12px rgba(255,221,68,0.5); }
+  .group-energy > .section-header .app-count { color: #806e22; }
+  .group-energy .app-name { color: #ffdd44; }
+  .group-energy .app { border-color: #806e22; }
+  .group-energy .app:hover {
+    border-color: #ffdd44;
+    background: rgba(255, 221, 68, 0.04);
+  }
+  .group-energy .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(255,221,68,0.4), 0 0 20px rgba(255,221,68,0.3);
+  }
+  .group-energy .prompt { color: #ffdd44; }
+
+  /* Travel group — railway green */
+  .group-travel > .section-header { color: #44bb88; text-shadow: 0 0 8px rgba(68,187,136,0.3); }
+  .group-travel > .section-header:hover { color: #66ddaa; text-shadow: 0 0 12px rgba(68,187,136,0.5); }
+  .group-travel > .section-header .app-count { color: #226644; }
+  .group-travel .app-name { color: #44bb88; }
+  .group-travel .app { border-color: #226644; }
+  .group-travel .app:hover {
+    border-color: #44bb88;
+    background: rgba(68, 187, 136, 0.04);
+  }
+  .group-travel .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(68,187,136,0.4), 0 0 20px rgba(68,187,136,0.3);
+  }
+  .group-travel .prompt { color: #44bb88; }
 
   /* Orbital group — cold starlight */
   .group-orbital > .section-header { color: #aaccff; text-shadow: 0 0 8px rgba(170,204,255,0.3); }
@@ -538,7 +564,7 @@
       <div class="status-bar">
         <span class="status-item">[ SYSTEM READY ]</span>
         <span class="status-item">[ 28 APPS LOADED ]</span>
-        <span class="status-item">[ 2026-03-26 10:22 UTC ]</span>
+        <span class="status-item">[ 2026-03-26 10:24 UTC ]</span>
       </div>
 
       <div class="header">
@@ -620,6 +646,20 @@
         <span class="app-tag">MARITIME BUOYAGE</span>
       </div>
       <div class="app-desc">IALA buoyage system reference and exam prep. All 12 mark types, animated lights, Region A/B, and quiz modes.</div>
+      <span class="prompt">▸</span>
+    </a>
+    </div>
+  </details>
+
+  <details class="section group-energy">
+    <summary class="section-header">ENERGY MONITORING <span class="app-count">[1]</span></summary>
+    <div class="app-list group-energy">
+    <a class="app" href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">GRIDCON</span>
+        <span class="app-tag">POWER GRID MONITOR</span>
+      </div>
+      <div class="app-desc">Real-time Ireland All-Island electricity grid. Frequency, wind/solar generation, and interconnector flows.</div>
       <span class="prompt">▸</span>
     </a>
     </div>
@@ -743,28 +783,6 @@
     </div>
   </details>
 
-  <details class="section group-retrocrt">
-    <summary class="section-header">RETRO CRT <span class="app-count">[2]</span></summary>
-    <div class="app-list group-retrocrt">
-    <a class="app" href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">GRIDCON</span>
-        <span class="app-tag">POWER GRID MONITOR</span>
-      </div>
-      <div class="app-desc">Real-time Ireland All-Island electricity grid. Frequency, wind/solar generation, and interconnector flows.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/ie/app/retrorail/id6758949328" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">RetroRail</span>
-        <span class="app-tag">IRISH RAIL TRAVEL</span>
-      </div>
-      <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
-
   <details class="section group-phosphor">
     <summary class="section-header">SHORT WAVE UTILITIES <span class="app-count">[6]</span></summary>
     <div class="app-list group-phosphor">
@@ -829,6 +847,20 @@
         <span class="app-tag">CORPORATE SATIRE</span>
       </div>
       <div class="app-desc">How much manager are you? 420 questions measuring your Corporate Management Energy™ on a scale of 0 to 100.</div>
+      <span class="prompt">▸</span>
+    </a>
+    </div>
+  </details>
+
+  <details class="section group-travel">
+    <summary class="section-header">TRAVEL <span class="app-count">[1]</span></summary>
+    <div class="app-list group-travel">
+    <a class="app" href="https://apps.apple.com/ie/app/retrorail/id6758949328" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">RetroRail</span>
+        <span class="app-tag">IRISH RAIL TRAVEL</span>
+      </div>
+      <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
       <span class="prompt">▸</span>
     </a>
     </div>
