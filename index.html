@@ -446,7 +446,7 @@
 
   .footer {
     text-align: center;
-    padding: 16px 0;
+    padding: 16px 0 0 0;
     font-size: 0.8rem;
     color: var(--green-dim);
     letter-spacing: 0.1em;
@@ -459,6 +459,38 @@
   }
   .footer a:hover {
     color: var(--green);
+  }
+
+  .telemetry {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.7rem;
+    color: var(--border);
+    letter-spacing: 0.08em;
+    padding: 12px 0 4px 0;
+  }
+
+  .fkey-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    padding: 8px 0 16px 0;
+  }
+  .fkey-bar a {
+    color: var(--green-dim);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .fkey-bar a:hover {
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green-glow);
+  }
+  .fkey-bar .fkey {
+    color: var(--border);
   }
 
   .cursor-blink {
@@ -515,7 +547,7 @@
         <span class="status-item">TTY/07</span>
         <span class="status-item">LINK:UP</span>
         <span class="status-item">28 LOADED</span>
-        <span class="status-item">2026-03-26 10:53 UTC</span>
+        <span class="status-item">2026-03-26 10:55 UTC</span>
       </div>
 
       <span class="corners tl">┌</span>
@@ -848,9 +880,21 @@
 
 
       <div class="footer">
-        ALL APPS €0.99 — PeakManager: FREE<br>
-        <br>
-        <span class="cursor-blink">█</span>
+        ALL APPS €0.99 — PeakManager: FREE
+      </div>
+
+      <div class="telemetry">
+        <span>VT220</span>
+        <span>9600,8N1</span>
+        <span>BUF:64K</span>
+        <span>SNR:NOMINAL</span>
+        <span>PARITY:NONE</span>
+      </div>
+
+      <div class="fkey-bar">
+        <a href="https://medium.com/@dr-adventures" target="_blank" rel="noopener"><span class="fkey">F1=</span>MEDIUM</a>
+        <a href="https://fractaldoctor.github.io/Socials/" target="_blank" rel="noopener"><span class="fkey">F3=</span>SOCIAL</a>
+        <a href="https://github.com/FractalDoctor" target="_blank" rel="noopener"><span class="fkey">F5=</span>GITHUB</a>
       </div>
 
 </div>
