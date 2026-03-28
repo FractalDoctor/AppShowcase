@@ -264,6 +264,21 @@
   }
   .group-energy .prompt { color: #ffdd44; }
 
+  /* Renewable energy group — solar orange */
+  .group-renewable > .section-header { color: #ff9933; text-shadow: 0 0 8px rgba(255,153,51,0.3); }
+  .group-renewable > .section-header:hover { color: #ffbb66; text-shadow: 0 0 12px rgba(255,153,51,0.5); }
+  .group-renewable > .section-header .app-count { color: #804d1a; }
+  .group-renewable .app-name { color: #ff9933; }
+  .group-renewable .app { border-color: #804d1a; }
+  .group-renewable .app:hover {
+    border-color: #ff9933;
+    background: rgba(255, 153, 51, 0.04);
+  }
+  .group-renewable .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(255,153,51,0.4), 0 0 20px rgba(255,153,51,0.3);
+  }
+  .group-renewable .prompt { color: #ff9933; }
+
   /* Travel group — railway green */
   .group-travel > .section-header { color: #44bb88; text-shadow: 0 0 8px rgba(68,187,136,0.3); }
   .group-travel > .section-header:hover { color: #66ddaa; text-shadow: 0 0 12px rgba(68,187,136,0.5); }
@@ -547,7 +562,7 @@
         <span class="status-item">TTY/07</span>
         <span class="status-item">LINK:UP</span>
         <span class="status-item">29 LOADED</span>
-        <span class="status-item">2026-03-28 09:30 UTC</span>
+        <span class="status-item">2026-03-28 09:34 UTC</span>
       </div>
 
       <span class="corners tl">┌</span>
@@ -702,7 +717,7 @@
   </details>
 
   <details class="section group-general">
-    <summary class="section-header">REFERENCE <span class="app-count">[2]</span></summary>
+    <summary class="section-header">REFERENCE <span class="app-count">[1]</span></summary>
     <div class="app-list group-general">
     <a class="app" href="https://apps.apple.com/ie/app/country-dialling-codes/id394343831" target="_blank" rel="noopener">
       <div class="app-row">
@@ -712,12 +727,18 @@
       <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
       <span class="prompt">▸</span>
     </a>
+    </div>
+  </details>
+
+  <details class="section group-renewable">
+    <summary class="section-header">RENEWABLE ENERGY <span class="app-count">[1]</span></summary>
+    <div class="app-list group-renewable">
     <a class="app" href="https://apps.apple.com/ie/app/noxsolar/id6761268762" target="_blank" rel="noopener">
       <div class="app-row">
         <span class="app-name">NoxSolar</span>
-        <span class="app-tag">UTILITIES</span>
+        <span class="app-tag">SOLAR PLANNING</span>
       </div>
-      <div class="app-desc">How much free energy is falling on your roof right now? NoxSolar puts solar panel planning in your pocket.</div>
+      <div class="app-desc">Solar panel planning tool. NASA POWER irradiance data, yield calculator, financial projections, and location comparison.</div>
       <span class="prompt">▸</span>
     </a>
     </div>
