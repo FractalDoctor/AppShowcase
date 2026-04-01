@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Airports — GLOBAL REFERENCE | Dr Stuart Woolley</title>
+<meta name="description" content="Airport reference app for iPhone. Look up any airport worldwide by ICAO or IATA code. Frequencies, runway details, elevation, coordinates, and maps. Comprehensive pilot and aviation enthusiast reference.">
+<meta property="og:title" content="World Airports — GLOBAL REFERENCE">
+<meta property="og:description" content="Airport reference app for iPhone. Look up any airport worldwide by ICAO or IATA code. Frequencies, runway details, elevation, coordinates, and maps. Comprehensive pilot and aviation enthusiast reference.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://fractaldoctor.github.io/AppShowcase/image.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://fractaldoctor.github.io/AppShowcase/world-airports/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='3' y='24' font-family='monospace' font-size='22' fill='%2333ff33'>></text><text x='16' y='24' font-family='monospace' font-size='22' fill='%2333ff33'>_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "World Airports",
+  "operatingSystem": "iOS",
+  "applicationCategory": "ReferenceApplication",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Stuart Woolley"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0.99",
+    "priceCurrency": "EUR"
+  },
+  "description": "Airport reference app for iPhone. Look up any airport worldwide by ICAO or IATA code. Frequencies, runway details, elevation, coordinates, and maps. Comprehensive pilot and aviation enthusiast reference."
+}
+</script>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --green: #33ff33;
+    --green-dim: #33cc33;
+    --green-glow: #33ff3344;
+    --scanline: rgba(0,0,0,0.22);
+    --border: #2a882a;
+    --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
+    --accent: #44aaff;
+    --accent-dim: #225580;
+    --accent-glow: rgba(68,170,255,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--green);
+    font-family: var(--font);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 2px, var(--scanline) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .terminal {
+    max-width: 720px;
+    margin: 16px auto;
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .corners {
+    position: absolute;
+    font-size: 0.85rem;
+    color: var(--green-dim);
+  }
+  .corners.tl { top: 4px; left: 8px; }
+  .corners.tr { top: 4px; right: 8px; }
+  .corners.bl { bottom: 4px; left: 8px; }
+  .corners.br { bottom: 4px; right: 8px; }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    color: var(--green-dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .breadcrumb a {
+    color: var(--green-dim);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover {
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green-glow);
+  }
+
+  .app-header {
+    margin-bottom: 24px;
+  }
+  .app-header h1 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+    margin-bottom: 4px;
+  }
+  .app-header .tag {
+    font-size: 0.9rem;
+    color: var(--accent-dim);
+    letter-spacing: 0.15em;
+  }
+  .app-header .section-label {
+    font-size: 0.75rem;
+    color: var(--accent-dim);
+    letter-spacing: 0.12em;
+    margin-top: 8px;
+  }
+
+  .app-body {
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .app-body .curated {
+    font-size: 1.0rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-shadow: 0 0 6px var(--accent-glow);
+  }
+  .app-body .seo {
+    font-size: 0.9rem;
+    color: var(--green-dim);
+    line-height: 1.7;
+  }
+
+  .store-link {
+    display: inline-block;
+    border: 1px solid var(--accent-dim);
+    padding: 12px 24px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 1.0rem;
+    letter-spacing: 0.15em;
+    transition: border-color 0.15s ease, background 0.15s ease, text-shadow 0.15s ease, box-shadow 0.15s ease;
+    margin-bottom: 32px;
+  }
+  .store-link:hover {
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.04);
+    text-shadow: 0 0 12px var(--accent-glow);
+    box-shadow: 0 0 20px var(--accent-glow), inset 0 0 40px rgba(255,255,255,0.02);
+  }
+
+  .related {
+    margin-top: 8px;
+  }
+  .related-label {
+    font-size: 0.9rem;
+    color: var(--green-dim);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    text-shadow: 0 0 6px var(--green-glow);
+  }
+
+  .app {
+    display: block;
+    border: 1px solid var(--accent-dim);
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--green);
+    transition: border-color 0.15s ease, background 0.8s ease, text-shadow 0.8s ease, box-shadow 0.8s ease;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .app:hover {
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.04);
+    text-shadow: 0 0 12px var(--accent-glow);
+    box-shadow: inset 0 0 40px rgba(255,255,255,0.02), 0 0 20px var(--accent-glow);
+    transition: border-color 0.15s ease, background 0.15s ease, text-shadow 0.15s ease, box-shadow 0.15s ease;
+  }
+  .app:hover .app-name { text-shadow: 0 0 12px var(--accent-glow), 0 0 25px var(--accent-glow); }
+  .app:hover .prompt { opacity: 1; }
+
+  .app-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .app-name { font-size: 1.1rem; letter-spacing: 0.08em; color: var(--accent); white-space: nowrap; }
+  .app-tag { font-size: 0.85rem; color: var(--accent-dim); letter-spacing: 0.05em; white-space: nowrap; }
+  .app-desc { font-size: 0.88rem; color: var(--green-dim); margin-top: 4px; line-height: 1.4; }
+  .prompt { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 0.95rem; opacity: 0; transition: opacity 0.15s ease; }
+
+  .footer {
+    text-align: center;
+    padding: 16px 0 0 0;
+    font-size: 0.8rem;
+    color: var(--green-dim);
+    letter-spacing: 0.1em;
+  }
+  .footer a { color: var(--green-dim); text-decoration: none; }
+  .footer a:hover { color: var(--green); }
+
+  .telemetry {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.7rem;
+    color: var(--border);
+    letter-spacing: 0.08em;
+    padding: 12px 0 4px 0;
+  }
+
+  @media (max-width: 480px) {
+    .terminal { padding: 16px 12px; }
+    .app-header h1 { font-size: 1.1rem; letter-spacing: 0.15em; }
+    .app-row { flex-direction: column; gap: 2px; }
+    .app-tag { text-align: left; }
+    .prompt { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <span class="corners tl">┌</span>
+  <span class="corners tr">┐</span>
+  <span class="corners bl">└</span>
+  <span class="corners br">┘</span>
+
+  <div class="breadcrumb">
+    <a href="../">◀ ALL APPS</a> / AVIATION
+  </div>
+
+  <div class="app-header">
+    <h1>World Airports</h1>
+    <div class="tag">GLOBAL REFERENCE</div>
+  </div>
+
+  <div class="app-body">
+    <div class="curated">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps.</div>
+    <div class="seo">Airport reference app for iPhone. Look up any airport worldwide by ICAO or IATA code. Frequencies, runway details, elevation, coordinates, and maps. Comprehensive pilot and aviation enthusiast reference.</div>
+  </div>
+
+  <a class="store-link" href="https://apps.apple.com/ie/app/world-airports/id912803465" target="_blank" rel="noopener">▸ VIEW ON APP STORE</a>
+
+  <div class="related">
+        <div class="related-label">RELATED APPLICATIONS</div>
+        <a class="app" href="../phosphorwx/">
+          <div class="app-row">
+            <span class="app-name">PhosphorWX</span>
+            <span class="app-tag">AVIATION WEATHER</span>
+          </div>
+          <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display.</div>
+          <span class="prompt">▸</span>
+        </a>
+      </div>
+
+  <div class="footer">
+    <a href="../">◀ BACK TO SHOWCASE</a>
+  </div>
+
+  <div class="telemetry">
+    <span>VT220</span>
+    <span>9600,8N1</span>
+    <span>BUF:64K</span>
+    <span>SNR:NOMINAL</span>
+  </div>
+
+</div>
+
+</body>
+</html>
