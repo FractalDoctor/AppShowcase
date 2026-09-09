@@ -26,7 +26,6 @@
     --white-dim: #666666;
     --nacht: #6699ff;
     --nacht-dim: #334d80;
-    --scanline: rgba(0,0,0,0.22);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
   }
@@ -39,22 +38,6 @@
     font-family: var(--font);
     min-height: 100vh;
     overflow-x: hidden;
-  }
-
-  /* CRT scanline overlay */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      var(--scanline) 2px,
-      var(--scanline) 4px
-    );
-    pointer-events: none;
-    z-index: 1000;
   }
 
   /* Subtle screen curvature vignette */
@@ -592,7 +575,7 @@
         <span class="status-item">TTY/07</span>
         <span class="status-item">LINK:UP</span>
         <span class="status-item">41 LOADED</span>
-        <span class="status-item">2026-09-09 09:28 UTC</span>
+        <span class="status-item">2026-09-09 09:34 UTC</span>
       </div>
 
       <span class="corners tl">┌</span>
