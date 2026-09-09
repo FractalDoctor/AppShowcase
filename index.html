@@ -474,6 +474,21 @@
   }
   .group-macos .prompt { color: #33ccff; }
 
+  /* App bundle group — magenta */
+  .group-bundle > .section-header { color: #ff66cc; text-shadow: 0 0 8px rgba(255,102,204,0.3); }
+  .group-bundle > .section-header:hover { color: #ff88dd; text-shadow: 0 0 12px rgba(255,102,204,0.5); }
+  .group-bundle > .section-header .app-count { color: #80336a; }
+  .group-bundle .app-name { color: #ff66cc; }
+  .group-bundle .app { border-color: #80336a; }
+  .group-bundle .app:hover {
+    border-color: #ff66cc;
+    background: rgba(255, 102, 204, 0.04);
+  }
+  .group-bundle .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(255,102,204,0.4), 0 0 20px rgba(255,102,204,0.3);
+  }
+  .group-bundle .prompt { color: #ff66cc; }
+
   .footer {
     text-align: center;
     padding: 16px 0 0 0;
@@ -577,7 +592,7 @@
         <span class="status-item">TTY/07</span>
         <span class="status-item">LINK:UP</span>
         <span class="status-item">41 LOADED</span>
-        <span class="status-item">2026-09-09 09:10 UTC</span>
+        <span class="status-item">2026-09-09 09:17 UTC</span>
       </div>
 
       <span class="corners tl">┌</span>
@@ -1019,6 +1034,29 @@
         <span class="app-tag">IRISH RAIL TRAVEL</span>
       </div>
       <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
+      <span class="prompt">▸</span>
+    </a>
+    </div>
+  </details>
+
+  <details class="section group-bundle">
+    <summary class="section-header">APP BUNDLES <span class="app-count">[2]</span></summary>
+    <div class="section-intro">Member apps are also sold individually. A bundle is priced below the sum of its members and prorates against anything already owned.</div>
+    <div class="app-list group-bundle">
+    <a class="app" href="https://apps.apple.com/us/app-bundle/id1889878962" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">Phosphor SWL Suite</span>
+        <span class="app-tag">7 APPS</span>
+      </div>
+      <div class="app-desc">PhosphorRTTY · PhosphorCW · PhosphorSSTV · PhosphorHertz · PhosphorCalc · PhantomGram · PhosphorSWL</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/us/app-bundle/id6808578195" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">Phosphor SWL Suite II</span>
+        <span class="app-tag">7 APPS</span>
+      </div>
+      <div class="app-desc">PhosphorPSK · PhosphorFeld · PhosphorTEX · PhosphorSol · PhosphorBeam · PhosphorOrbit · PhosphorWX</div>
       <span class="prompt">▸</span>
     </a>
     </div>
