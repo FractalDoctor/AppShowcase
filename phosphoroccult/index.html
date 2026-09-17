@@ -40,6 +40,7 @@
     --green: #33ff33;
     --green-dim: #33cc33;
     --green-glow: #33ff3344;
+    --scanline: rgba(0,0,0,0.22);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
     --accent: #33eebb;
@@ -55,6 +56,15 @@
     font-family: var(--font);
     min-height: 100vh;
     overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 2px, var(--scanline) 4px);
+    pointer-events: none;
+    z-index: 1000;
   }
 
   body::before {
@@ -136,24 +146,6 @@
     font-size: 0.9rem;
     color: var(--green-dim);
     line-height: 1.7;
-  }
-  .app-body .review {
-    border-left: 1px solid var(--accent-dim);
-    padding: 10px 0 10px 16px;
-    margin: 20px 0 4px 0;
-    font-size: 0.95rem;
-    color: var(--accent);
-  }
-  .app-body .review .stars {
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 6px var(--accent-glow);
-  }
-  .app-body .review .attrib {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    color: var(--accent-dim);
   }
 
   .store-link {
@@ -261,22 +253,11 @@
   <div class="app-body">
     <div class="curated">Stellar occultation predictor. Moon, planets, and asteroids passing in front of stars, computed on-device.</div>
     <div class="seo">Stellar occultation app for iPhone. Predict when the Moon, planets, and asteroids pass in front of stars. On-device computation for amateur astronomers — plan your occultation observations.</div>
-    
   </div>
 
   <a class="store-link" href="https://apps.apple.com/ie/app/phosphoroccult/id6760973134" target="_blank" rel="noopener">▸ VIEW ON APP STORE</a>
 
-  <div class="related">
-        <div class="related-label">RELATED APPLICATIONS</div>
-        <a class="app" href="../meteor-wheel/">
-          <div class="app-row">
-            <span class="app-name">Meteor Wheel</span>
-            <span class="app-tag">METEOR SHOWER WHEEL</span>
-          </div>
-          <div class="app-desc">The meteor showers of the year on one clock face. A verdict on tonight from radiant altitude, moon and distance from peak, with a sightings log and a widget. Native on iPad, the wheel and plates at full size.</div>
-          <span class="prompt">▸</span>
-        </a>
-      </div>
+  
 
   <div class="footer">
     <a href="../">◀ BACK TO SHOWCASE</a>

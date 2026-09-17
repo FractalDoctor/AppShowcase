@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meteor Wheel — METEOR SHOWER WHEEL | Dr Stuart Woolley</title>
-<meta name="description" content="Meteor shower calendar app for iPhone and iPad. See where today sits in the annual cycle of showers and whether tonight is worth going outside, computed from radiant altitude, moon phase and distance from peak. Nineteen radiant constellation plates, a sightings log and a home screen widget. Built for the amateur skywatcher. Runs natively on iPad.">
-<meta property="og:title" content="Meteor Wheel — METEOR SHOWER WHEEL">
-<meta property="og:description" content="Meteor shower calendar app for iPhone and iPad. See where today sits in the annual cycle of showers and whether tonight is worth going outside, computed from radiant altitude, moon phase and distance from peak. Nineteen radiant constellation plates, a sightings log and a home screen widget. Built for the amateur skywatcher. Runs natively on iPad.">
+<title>Meteor Wheel — LIFESTYLE | Dr Stuart Woolley</title>
+<meta name="description" content="Answers one question. Is it worth going outside tonight? Most meteor apps hand you a calendar of dates.">
+<meta property="og:title" content="Meteor Wheel — LIFESTYLE">
+<meta property="og:description" content="Answers one question. Is it worth going outside tonight? Most meteor apps hand you a calendar of dates.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://fractaldoctor.github.io/AppShowcase/image.png">
 <meta name="twitter:card" content="summary">
@@ -21,7 +21,7 @@
   "@type": "SoftwareApplication",
   "name": "Meteor Wheel",
   "operatingSystem": "iOS",
-  "applicationCategory": "EducationApplication",
+  "applicationCategory": "ReferenceApplication",
   "author": {
     "@type": "Person",
     "name": "Dr Stuart Woolley"
@@ -31,7 +31,7 @@
     "price": "0.99",
     "priceCurrency": "EUR"
   },
-  "description": "Meteor shower calendar app for iPhone and iPad. See where today sits in the annual cycle of showers and whether tonight is worth going outside, computed from radiant altitude, moon phase and distance from peak. Nineteen radiant constellation plates, a sightings log and a home screen widget. Built for the amateur skywatcher. Runs natively on iPad."
+  "description": ""
 }
 </script>
 <style>
@@ -40,11 +40,12 @@
     --green: #33ff33;
     --green-dim: #33cc33;
     --green-glow: #33ff3344;
+    --scanline: rgba(0,0,0,0.22);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
-    --accent: #33eebb;
-    --accent-dim: #1a7760;
-    --accent-glow: rgba(51,238,187,0.3);
+    --accent: #cccccc;
+    --accent-dim: #666666;
+    --accent-glow: rgba(204,204,204,0.3);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -55,6 +56,15 @@
     font-family: var(--font);
     min-height: 100vh;
     overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 2px, var(--scanline) 4px);
+    pointer-events: none;
+    z-index: 1000;
   }
 
   body::before {
@@ -136,24 +146,6 @@
     font-size: 0.9rem;
     color: var(--green-dim);
     line-height: 1.7;
-  }
-  .app-body .review {
-    border-left: 1px solid var(--accent-dim);
-    padding: 10px 0 10px 16px;
-    margin: 20px 0 4px 0;
-    font-size: 0.95rem;
-    color: var(--accent);
-  }
-  .app-body .review .stars {
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 6px var(--accent-glow);
-  }
-  .app-body .review .attrib {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    color: var(--accent-dim);
   }
 
   .store-link {
@@ -250,30 +242,45 @@
   <span class="corners br">┘</span>
 
   <div class="breadcrumb">
-    <a href="../">◀ ALL APPS</a> / ASTRONOMY
+    <a href="../">◀ ALL APPS</a> / REFERENCE
   </div>
 
   <div class="app-header">
     <h1>Meteor Wheel</h1>
-    <div class="tag">METEOR SHOWER WHEEL</div>
+    <div class="tag">LIFESTYLE</div>
   </div>
 
   <div class="app-body">
-    <div class="curated">The meteor showers of the year on one clock face. A verdict on tonight from radiant altitude, moon and distance from peak, with a sightings log and a widget. Native on iPad, the wheel and plates at full size.</div>
-    <div class="seo">Meteor shower calendar app for iPhone and iPad. See where today sits in the annual cycle of showers and whether tonight is worth going outside, computed from radiant altitude, moon phase and distance from peak. Nineteen radiant constellation plates, a sightings log and a home screen widget. Built for the amateur skywatcher. Runs natively on iPad.</div>
-    
+    <div class="curated">Answers one question. Is it worth going outside tonight? Most meteor apps hand you a calendar of dates.</div>
+    <div class="seo">Answers one question. Is it worth going outside tonight? Most meteor apps hand you a calendar of dates.</div>
   </div>
 
   <a class="store-link" href="https://apps.apple.com/ie/app/meteor-wheel/id338887663" target="_blank" rel="noopener">▸ VIEW ON APP STORE</a>
 
   <div class="related">
         <div class="related-label">RELATED APPLICATIONS</div>
-        <a class="app" href="../phosphoroccult/">
+        <a class="app" href="../country-dialling-codes/">
           <div class="app-row">
-            <span class="app-name">PhosphorOccult</span>
-            <span class="app-tag">OCCULTATION PREDICTOR</span>
+            <span class="app-name">Country Dialling Codes</span>
+            <span class="app-tag">TELECOMS REFERENCE</span>
           </div>
-          <div class="app-desc">Stellar occultation predictor. Moon, planets, and asteroids passing in front of stars, computed on-device.</div>
+          <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
+          <span class="prompt">▸</span>
+        </a>
+        <a class="app" href="../q-codes-reference/">
+          <div class="app-row">
+            <span class="app-name">Q Codes Reference</span>
+            <span class="app-tag">REFERENCE</span>
+          </div>
+          <div class="app-desc"></div>
+          <span class="prompt">▸</span>
+        </a>
+        <a class="app" href="../wiccan-wheel-of-the-year/">
+          <div class="app-row">
+            <span class="app-name">Wiccan Wheel of the Year</span>
+            <span class="app-tag">LIFESTYLE</span>
+          </div>
+          <div class="app-desc"></div>
           <span class="prompt">▸</span>
         </a>
       </div>
