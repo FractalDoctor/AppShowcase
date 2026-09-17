@@ -40,7 +40,6 @@
     --green: #33ff33;
     --green-dim: #33cc33;
     --green-glow: #33ff3344;
-    --scanline: rgba(0,0,0,0.22);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
     --accent: #66cc88;
@@ -56,15 +55,6 @@
     font-family: var(--font);
     min-height: 100vh;
     overflow-x: hidden;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 2px, var(--scanline) 4px);
-    pointer-events: none;
-    z-index: 1000;
   }
 
   body::before {
@@ -146,6 +136,24 @@
     font-size: 0.9rem;
     color: var(--green-dim);
     line-height: 1.7;
+  }
+  .app-body .review {
+    border-left: 1px solid var(--accent-dim);
+    padding: 10px 0 10px 16px;
+    margin: 20px 0 4px 0;
+    font-size: 0.95rem;
+    color: var(--accent);
+  }
+  .app-body .review .stars {
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 6px var(--accent-glow);
+  }
+  .app-body .review .attrib {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--accent-dim);
   }
 
   .store-link {
@@ -253,6 +261,7 @@
   <div class="app-body">
     <div class="curated">Real-time Irish coastal tide monitor. 38 stations via Marine Institute, wave buoys, and weather data.</div>
     <div class="seo">Tide times app for Ireland. Real-time tidal data from 38 Marine Institute coastal stations, wave buoy heights, and local weather. Essential for sailing, fishing, kayaking, and coastal walks around Ireland.</div>
+    
   </div>
 
   <a class="store-link" href="https://apps.apple.com/ie/app/phosphortide/id6759836073" target="_blank" rel="noopener">▸ VIEW ON APP STORE</a>

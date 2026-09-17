@@ -26,7 +26,6 @@
     --white-dim: #666666;
     --nacht: #6699ff;
     --nacht-dim: #334d80;
-    --scanline: rgba(0,0,0,0.22);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
   }
@@ -39,22 +38,6 @@
     font-family: var(--font);
     min-height: 100vh;
     overflow-x: hidden;
-  }
-
-  /* CRT scanline overlay */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      var(--scanline) 2px,
-      var(--scanline) 4px
-    );
-    pointer-events: none;
-    z-index: 1000;
   }
 
   /* Subtle screen curvature vignette */
@@ -474,6 +457,21 @@
   }
   .group-macos .prompt { color: #33ccff; }
 
+  /* App bundle group — magenta */
+  .group-bundle > .section-header { color: #ff66cc; text-shadow: 0 0 8px rgba(255,102,204,0.3); }
+  .group-bundle > .section-header:hover { color: #ff88dd; text-shadow: 0 0 12px rgba(255,102,204,0.5); }
+  .group-bundle > .section-header .app-count { color: #80336a; }
+  .group-bundle .app-name { color: #ff66cc; }
+  .group-bundle .app { border-color: #80336a; }
+  .group-bundle .app:hover {
+    border-color: #ff66cc;
+    background: rgba(255, 102, 204, 0.04);
+  }
+  .group-bundle .app:hover .app-name {
+    text-shadow: 0 0 10px rgba(255,102,204,0.4), 0 0 20px rgba(255,102,204,0.3);
+  }
+  .group-bundle .prompt { color: #ff66cc; }
+
   .footer {
     text-align: center;
     padding: 16px 0 0 0;
@@ -577,7 +575,7 @@
         <span class="status-item">TTY/07</span>
         <span class="status-item">LINK:UP</span>
         <span class="status-item">41 LOADED</span>
-        <span class="status-item">2026-09-17 06:52 UTC</span>
+        <span class="status-item">2026-09-17 06:54 UTC</span>
       </div>
 
       <span class="corners tl">┌</span>
@@ -592,8 +590,16 @@
 
 
   <details class="section group-astronomy">
-    <summary class="section-header">ASTRONOMY <span class="app-count">[1]</span></summary>
+    <summary class="section-header">ASTRONOMY <span class="app-count">[2]</span></summary>
     <div class="app-list group-astronomy">
+    <a class="app" href="meteor-wheel/">
+      <div class="app-row">
+        <span class="app-name">Meteor Wheel</span>
+        <span class="app-tag">METEOR SHOWER WHEEL</span>
+      </div>
+      <div class="app-desc">The meteor showers of the year on one clock face. A verdict on tonight from radiant altitude, moon and distance from peak, with a sightings log and a widget. Native on iPad, the wheel and plates at full size.</div>
+      <span class="prompt">▸</span>
+    </a>
     <a class="app" href="phosphoroccult/">
       <div class="app-row">
         <span class="app-name">PhosphorOccult</span>
@@ -613,7 +619,7 @@
         <span class="app-name">PhosphorWX</span>
         <span class="app-tag">AVIATION WEATHER</span>
       </div>
-      <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display.</div>
+      <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display. Native iPad split view.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="world-airports/">
@@ -621,7 +627,7 @@
         <span class="app-name">World Airports</span>
         <span class="app-tag">GLOBAL REFERENCE</span>
       </div>
-      <div class="app-desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps.</div>
+      <div class="app-desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps. Native iPad split view.</div>
       <span class="prompt">▸</span>
     </a>
     </div>
@@ -710,14 +716,14 @@
   </details>
 
   <details class="section group-esoteric">
-    <summary class="section-header">ESOTERIC <span class="app-count">[4]</span></summary>
+    <summary class="section-header">ESOTERIC <span class="app-count">[5]</span></summary>
     <div class="app-list group-esoteric">
     <a class="app" href="celtic-tree-calendar/">
       <div class="app-row">
         <span class="app-name">Celtic Tree Calendar</span>
         <span class="app-tag">OGHAM TREE LORE</span>
       </div>
-      <div class="app-desc">The 13 tree-signs of the Beth-Luis-Nion year. Ogham glyphs, sourced mythology and folklore, an interactive wheel, and the Graves provenance told plainly.</div>
+      <div class="app-desc">The 13 tree-signs of the Beth-Luis-Nion year. Ogham glyphs, sourced mythology and folklore, an interactive wheel, and the Graves provenance told plainly. Native on iPad in every orientation.</div>
       <span class="prompt">▸</span>
     </a>
     <a class="app" href="mansions-of-the-moon/">
@@ -736,6 +742,14 @@
       <div class="app-desc">Track the moon through the eyes of seven ancient and modern spiritual traditions.</div>
       <span class="prompt">▸</span>
     </a>
+    <a class="app" href="wiccan-wheel-of-the-year/">
+      <div class="app-row">
+        <span class="app-name">Wiccan Wheel of the Year</span>
+        <span class="app-tag">SABBAT CALENDAR</span>
+      </div>
+      <div class="app-desc">The eight sabbats of the solar year on one wheel, computed for your location and hemisphere rather than taken from fixed calendar dates.</div>
+      <span class="prompt">▸</span>
+    </a>
     <a class="app" href="zodiac-wheel/">
       <div class="app-row">
         <span class="app-name">Zodiac Wheel</span>
@@ -747,46 +761,8 @@
     </div>
   </details>
 
-  <details class="section group-general">
-    <summary class="section-header">REFERENCE <span class="app-count">[4]</span></summary>
-    <div class="app-list group-general">
-    <a class="app" href="country-dialling-codes/">
-      <div class="app-row">
-        <span class="app-name">Country Dialling Codes</span>
-        <span class="app-tag">TELECOMS REFERENCE</span>
-      </div>
-      <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="meteor-wheel/">
-      <div class="app-row">
-        <span class="app-name">Meteor Wheel</span>
-        <span class="app-tag">LIFESTYLE</span>
-      </div>
-      <div class="app-desc">Answers one question. Is it worth going outside tonight? Most meteor apps hand you a calendar of dates.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="q-codes-reference/">
-      <div class="app-row">
-        <span class="app-name">Q Codes Reference</span>
-        <span class="app-tag">REFERENCE</span>
-      </div>
-      <div class="app-desc">Every Q code app on the store indexes by code.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="wiccan-wheel-of-the-year/">
-      <div class="app-row">
-        <span class="app-name">Wiccan Wheel of the Year</span>
-        <span class="app-tag">LIFESTYLE</span>
-      </div>
-      <div class="app-desc">Every other app prints the same eight fixed dates.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
-
   <details class="section group-renewable">
-    <summary class="section-header">RENEWABLE ENERGY <span class="app-count">[3]</span></summary>
+    <summary class="section-header">HOME ENERGY <span class="app-count">[3]</span></summary>
     <div class="app-list group-renewable">
     <a class="app" href="ber-estimator/">
       <div class="app-row">
@@ -810,6 +786,20 @@
         <span class="app-tag">SOLAR PLANNING</span>
       </div>
       <div class="app-desc">Solar panel planning tool. NASA POWER irradiance data, yield calculator, financial projections, and location comparison.</div>
+      <span class="prompt">▸</span>
+    </a>
+    </div>
+  </details>
+
+  <details class="section group-general">
+    <summary class="section-header">REFERENCE <span class="app-count">[1]</span></summary>
+    <div class="app-list group-general">
+    <a class="app" href="country-dialling-codes/">
+      <div class="app-row">
+        <span class="app-name">Country Dialling Codes</span>
+        <span class="app-tag">TELECOMS REFERENCE</span>
+      </div>
+      <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison.</div>
       <span class="prompt">▸</span>
     </a>
     </div>
@@ -882,7 +872,7 @@
   </details>
 
   <details class="section group-phosphor">
-    <summary class="section-header">SHORT WAVE UTILITIES <span class="app-count">[10]</span></summary>
+    <summary class="section-header">SHORT WAVE UTILITIES <span class="app-count">[11]</span></summary>
     <div class="app-list group-phosphor">
     <a class="app" href="phantomgram/">
       <div class="app-row">
@@ -964,6 +954,14 @@
       <div class="app-desc">Real-time NAVTEX maritime-safety decoder. 518 kHz gale warnings, SAR alerts, ice reports — CCIR-476 SITOR-B via your iPhone microphone.</div>
       <span class="prompt">▸</span>
     </a>
+    <a class="app" href="q-codes-reference/">
+      <div class="app-row">
+        <span class="app-name">Q Codes Reference</span>
+        <span class="app-tag">CW OPERATING TRAINER</span>
+      </div>
+      <div class="app-desc">Amateur radio operating vocabulary, drilled rather than tabulated. 106 Q codes, prosigns, abbreviations and phonetics, with IARU band plans and a signal report builder.</div>
+      <span class="prompt">▸</span>
+    </a>
     </div>
   </details>
 
@@ -1024,9 +1022,32 @@
     </div>
   </details>
 
+  <details class="section group-bundle">
+    <summary class="section-header">APP BUNDLES <span class="app-count">[2]</span></summary>
+    <div class="section-intro">Member apps are also sold individually. A bundle is priced below the sum of its members and prorates against anything already owned.</div>
+    <div class="app-list group-bundle">
+    <a class="app" href="https://apps.apple.com/us/app-bundle/id1889878962" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">Phosphor SWL Suite</span>
+        <span class="app-tag">7 APPS</span>
+      </div>
+      <div class="app-desc">PhosphorRTTY · PhosphorCW · PhosphorSSTV · PhosphorHertz · PhosphorCalc · PhantomGram · PhosphorSWL</div>
+      <span class="prompt">▸</span>
+    </a>
+    <a class="app" href="https://apps.apple.com/us/app-bundle/id6808578195" target="_blank" rel="noopener">
+      <div class="app-row">
+        <span class="app-name">Phosphor SWL Suite II</span>
+        <span class="app-tag">7 APPS</span>
+      </div>
+      <div class="app-desc">PhosphorPSK · PhosphorFeld · PhosphorTEX · PhosphorSol · PhosphorBeam · PhosphorOrbit · PhosphorWX</div>
+      <span class="prompt">▸</span>
+    </a>
+    </div>
+  </details>
+
 
       <div class="footer">
-        PRICES VARY
+        MOST APPS €0.99 — PeakManager: FREE
       </div>
 
       <div class="telemetry">

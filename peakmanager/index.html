@@ -40,7 +40,6 @@
     --green: #33ff33;
     --green-dim: #33cc33;
     --green-glow: #33ff3344;
-    --scanline: rgba(0,0,0,0.22);
     --border: #2a882a;
     --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
     --accent: #ff4444;
@@ -56,15 +55,6 @@
     font-family: var(--font);
     min-height: 100vh;
     overflow-x: hidden;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 2px, var(--scanline) 4px);
-    pointer-events: none;
-    z-index: 1000;
   }
 
   body::before {
@@ -146,6 +136,24 @@
     font-size: 0.9rem;
     color: var(--green-dim);
     line-height: 1.7;
+  }
+  .app-body .review {
+    border-left: 1px solid var(--accent-dim);
+    padding: 10px 0 10px 16px;
+    margin: 20px 0 4px 0;
+    font-size: 0.95rem;
+    color: var(--accent);
+  }
+  .app-body .review .stars {
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 6px var(--accent-glow);
+  }
+  .app-body .review .attrib {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--accent-dim);
   }
 
   .store-link {
@@ -253,6 +261,7 @@
   <div class="app-body">
     <div class="curated">How much manager are you? 420 questions measuring your Corporate Management Energy™ on a scale of 0 to 100.</div>
     <div class="seo">Corporate management quiz app for iPhone. 420 questions measuring your Corporate Management Energy on a scale of 0 to 100. Satirical personality test for anyone who&#x27;s survived an agile standup.</div>
+    
   </div>
 
   <a class="store-link" href="https://apps.apple.com/ie/app/peakmanager/id6760596770" target="_blank" rel="noopener">▸ VIEW ON APP STORE</a>
