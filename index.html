@@ -11,1116 +11,196 @@
 <meta property="og:image" content="https://fractaldoctor.github.io/AppShowcase/image.png">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='3' y='24' font-family='monospace' font-size='22' fill='%2333ff33'>></text><text x='16' y='24' font-family='monospace' font-size='22' fill='%2333ff33'>_</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0a0a;
-    --green: #33ff33;
-    --green-dim: #33cc33;
-    --green-glow: #33ff3344;
-    --amber: #ffb833;
-    --amber-dim: #8a6a1a;
-    --white: #cccccc;
-    --white-dim: #666666;
-    --nacht: #6699ff;
-    --nacht-dim: #334d80;
-    --border: #2a882a;
-    --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--green);
-    font-family: var(--font);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Subtle screen curvature vignette */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
-    pointer-events: none;
-    z-index: 999;
-  }
-
-  .terminal {
-    max-width: 720px;
-    margin: 16px auto;
-    padding: 24px 20px;
-    border: 1px solid var(--border);
-    position: relative;
-  }
-
-  .header {
-    padding: 16px 20px;
-    margin-bottom: 24px;
-    text-align: center;
-    position: relative;
-  }
-
-  .header h1 {
-    font-size: 1.3rem;
-    font-weight: normal;
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 10px var(--green-glow), 0 0 20px var(--green-glow);
-    margin-bottom: 4px;
-  }
-
-  .header .subtitle {
-    color: var(--green-dim);
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-  }
-
-  .terminal > .corners {
-    position: absolute;
-    font-size: 0.85rem;
-    color: var(--green-dim);
-  }
-  .terminal > .corners.tl { top: 4px; left: 8px; }
-  .terminal > .corners.tr { top: 4px; right: 8px; }
-  .terminal > .corners.bl { bottom: 4px; left: 8px; }
-  .terminal > .corners.br { bottom: 4px; right: 8px; }
-
-  .section {
-    margin-bottom: 8px;
-  }
-
-  .section-header {
-    color: var(--green);
-    font-size: 1.05rem;
-    letter-spacing: 0.2em;
-    padding: 10px 4px;
-    cursor: pointer;
-    list-style: none;
-    text-shadow: 0 0 8px var(--green-glow);
-    transition: color 0.15s ease, text-shadow 0.15s ease;
-  }
-  .section-header::-webkit-details-marker {
-    display: none;
-  }
-  .section-header::before {
-    content: '▸ ';
-  }
-  details[open] > .section-header::before {
-    content: '▾ ';
-  }
-  .section-header:hover {
-    color: #66ff66;
-    text-shadow: 0 0 12px var(--green-glow), 0 0 24px var(--green-glow);
-  }
-  .section-header .app-count {
-    color: var(--green-dim);
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-  }
-
-  .section-intro {
-    font-size: 0.85rem;
-    color: #aa3333;
-    letter-spacing: 0.05em;
-    line-height: 1.5;
-    margin: 4px 0 12px 4px;
-    padding-right: 20px;
-  }
-  .section-intro a {
-    color: #ff4444;
-    text-decoration: none;
-  }
-  .section-intro a:hover {
-    color: #ff6666;
-    text-shadow: 0 0 8px rgba(255,68,68,0.4);
-  }
-
-  .section-sublabel {
-    color: var(--green);
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-    margin: 12px 0 10px 16px;
-    text-shadow: 0 0 8px var(--green-glow);
-  }
-  .section-sublabel::before {
-    content: '▸ ';
-  }
-
-  .app-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 28px;
-  }
-
-  .app {
-    display: block;
-    border: 1px solid var(--border);
-    padding: 14px 16px;
-    text-decoration: none;
-    color: var(--green);
-    transition: border-color 0.15s ease, background 0.8s ease, text-shadow 0.8s ease, box-shadow 0.8s ease;
-    position: relative;
-  }
-
-  .app:hover {
-    border-color: var(--green);
-    background: rgba(51, 255, 51, 0.08);
-    text-shadow: 0 0 12px rgba(51, 255, 51, 0.5);
-    box-shadow: inset 0 0 40px rgba(51, 255, 51, 0.06), 0 0 20px rgba(51, 255, 51, 0.15), 0 0 40px rgba(51, 255, 51, 0.05);
-    transition: border-color 0.15s ease, background 0.15s ease, text-shadow 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .app:hover .app-name {
-    text-shadow: 0 0 12px rgba(51, 255, 51, 0.6), 0 0 25px rgba(51, 255, 51, 0.3);
-  }
-
-  .app:hover .prompt {
-    opacity: 1;
-  }
-
-  .app-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-  }
-
-  .app-name {
-    font-size: 1.1rem;
-    letter-spacing: 0.08em;
-    white-space: nowrap;
-  }
-
-  .app-tag {
-    font-size: 0.85rem;
-    color: var(--green-dim);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-
-  .app-desc {
-    font-size: 0.88rem;
-    color: var(--green-dim);
-    margin-top: 4px;
-    line-height: 1.4;
-  }
-
-  .app-platforms {
-    font-size: 0.75rem;
-    color: var(--green-dim);
-    margin-top: 3px;
-    letter-spacing: 0.08em;
-  }
-
-  .prompt {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--green);
-    font-size: 0.95rem;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-  }
-
-  /* Phosphor Suite group */
-  .group-phosphor .app { border-color: var(--border); }
-  .group-phosphor .app:hover { border-color: var(--green); }
-
-  /* Energy group — electric yellow */
-  .group-energy > .section-header { color: #ffdd44; text-shadow: 0 0 8px rgba(255,221,68,0.3); }
-  .group-energy > .section-header:hover { color: #ffee77; text-shadow: 0 0 12px rgba(255,221,68,0.5); }
-  .group-energy > .section-header .app-count { color: #806e22; }
-  .group-energy .app-name { color: #ffdd44; }
-  .group-energy .app { border-color: #806e22; }
-  .group-energy .app:hover {
-    border-color: #ffdd44;
-    background: rgba(255, 221, 68, 0.04);
-  }
-  .group-energy .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(255,221,68,0.4), 0 0 20px rgba(255,221,68,0.3);
-  }
-  .group-energy .prompt { color: #ffdd44; }
-
-  /* Renewable energy group — solar orange */
-  .group-renewable > .section-header { color: #ff9933; text-shadow: 0 0 8px rgba(255,153,51,0.3); }
-  .group-renewable > .section-header:hover { color: #ffbb66; text-shadow: 0 0 12px rgba(255,153,51,0.5); }
-  .group-renewable > .section-header .app-count { color: #804d1a; }
-  .group-renewable .app-name { color: #ff9933; }
-  .group-renewable .app { border-color: #804d1a; }
-  .group-renewable .app:hover {
-    border-color: #ff9933;
-    background: rgba(255, 153, 51, 0.04);
-  }
-  .group-renewable .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(255,153,51,0.4), 0 0 20px rgba(255,153,51,0.3);
-  }
-  .group-renewable .prompt { color: #ff9933; }
-
-  /* Travel group — railway green */
-  .group-travel > .section-header { color: #44bb88; text-shadow: 0 0 8px rgba(68,187,136,0.3); }
-  .group-travel > .section-header:hover { color: #66ddaa; text-shadow: 0 0 12px rgba(68,187,136,0.5); }
-  .group-travel > .section-header .app-count { color: #226644; }
-  .group-travel .app-name { color: #44bb88; }
-  .group-travel .app { border-color: #226644; }
-  .group-travel .app:hover {
-    border-color: #44bb88;
-    background: rgba(68, 187, 136, 0.04);
-  }
-  .group-travel .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(68,187,136,0.4), 0 0 20px rgba(68,187,136,0.3);
-  }
-  .group-travel .prompt { color: #44bb88; }
-
-  /* Orbital group — cold starlight */
-  .group-orbital > .section-header { color: #aaccff; text-shadow: 0 0 8px rgba(170,204,255,0.3); }
-  .group-orbital > .section-header:hover { color: #ccddff; text-shadow: 0 0 12px rgba(170,204,255,0.5); }
-  .group-orbital > .section-header .app-count { color: #556688; }
-  .group-orbital .app-name { color: #aaccff; }
-  .group-orbital .app { border-color: #556688; }
-  .group-orbital .app:hover {
-    border-color: #aaccff;
-    background: rgba(170, 204, 255, 0.04);
-  }
-  .group-orbital .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(170,204,255,0.4), 0 0 20px rgba(170,204,255,0.3);
-  }
-  .group-orbital .prompt { color: #aaccff; }
-
-  /* Environmental group — earthy green */
-  .group-environmental > .section-header { color: #66cc88; text-shadow: 0 0 8px rgba(102,204,136,0.3); }
-  .group-environmental > .section-header:hover { color: #88ddaa; text-shadow: 0 0 12px rgba(102,204,136,0.5); }
-  .group-environmental > .section-header .app-count { color: #336644; }
-  .group-environmental .app-name { color: #66cc88; }
-  .group-environmental .app { border-color: #336644; }
-  .group-environmental .app:hover {
-    border-color: #66cc88;
-    background: rgba(102, 204, 136, 0.04);
-  }
-  .group-environmental .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(102,204,136,0.4), 0 0 20px rgba(102,204,136,0.3);
-  }
-  .group-environmental .prompt { color: #66cc88; }
-
-  /* Datum group — amber */
-  .group-datum > .section-header { color: var(--amber); text-shadow: 0 0 8px rgba(255,184,51,0.3); }
-  .group-datum > .section-header:hover { color: #ffcc66; text-shadow: 0 0 12px rgba(255,184,51,0.5); }
-  .group-datum > .section-header .app-count { color: var(--amber-dim); }
-  .group-datum .app-name { color: var(--amber); }
-  .group-datum .app { border-color: var(--amber-dim); }
-  .group-datum .app:hover {
-    border-color: var(--amber);
-    background: rgba(255, 184, 51, 0.04);
-  }
-  .group-datum .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(255,184,51,0.4), 0 0 20px rgba(255,184,51,0.3);
-  }
-  .group-datum .prompt { color: var(--amber); }
-
-  /* Nacht group — cool blue */
-  .group-nacht > .section-header { color: #6699ff; text-shadow: 0 0 8px rgba(102,153,255,0.3); }
-  .group-nacht > .section-header:hover { color: #88bbff; text-shadow: 0 0 12px rgba(102,153,255,0.5); }
-  .group-nacht > .section-header .app-count { color: #334d80; }
-  .group-nacht .app-name { color: #6699ff; }
-  .group-nacht .app { border-color: #334d80; }
-  .group-nacht .app:hover {
-    border-color: #6699ff;
-    background: rgba(102, 153, 255, 0.04);
-  }
-  .group-nacht .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(102,153,255,0.4), 0 0 20px rgba(102,153,255,0.3);
-  }
-  .group-nacht .prompt { color: #6699ff; }
-
-  /* Esoteric group — mystic purple */
-  .group-esoteric > .section-header { color: #cc66ff; text-shadow: 0 0 8px rgba(204,102,255,0.3); }
-  .group-esoteric > .section-header:hover { color: #dd88ff; text-shadow: 0 0 12px rgba(204,102,255,0.5); }
-  .group-esoteric > .section-header .app-count { color: #663380; }
-  .group-esoteric .app-name { color: #cc66ff; }
-  .group-esoteric .app { border-color: #663380; }
-  .group-esoteric .app:hover {
-    border-color: #cc66ff;
-    background: rgba(204, 102, 255, 0.04);
-  }
-  .group-esoteric .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(204,102,255,0.4), 0 0 20px rgba(204,102,255,0.3);
-  }
-  .group-esoteric .prompt { color: #cc66ff; }
-
-  /* RPG / Cthulhu Mythos group — eldritch bronze */
-  .group-rpg > .section-header { color: #cc8844; text-shadow: 0 0 8px rgba(204,136,68,0.3); }
-  .group-rpg > .section-header:hover { color: #ddaa66; text-shadow: 0 0 12px rgba(204,136,68,0.5); }
-  .group-rpg > .section-header .app-count { color: #664422; }
-  .group-rpg .app-name { color: #cc8844; }
-  .group-rpg .app { border-color: #664422; }
-  .group-rpg .app:hover {
-    border-color: #cc8844;
-    background: rgba(204, 136, 68, 0.04);
-  }
-  .group-rpg .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(204,136,68,0.4), 0 0 20px rgba(204,136,68,0.3);
-  }
-  .group-rpg .prompt { color: #cc8844; }
-
-  /* Aviation group — sky blue */
-  .group-aviation > .section-header { color: #44aaff; text-shadow: 0 0 8px rgba(68,170,255,0.3); }
-  .group-aviation > .section-header:hover { color: #66bbff; text-shadow: 0 0 12px rgba(68,170,255,0.5); }
-  .group-aviation > .section-header .app-count { color: #225580; }
-  .group-aviation .app-name { color: #44aaff; }
-  .group-aviation .app { border-color: #225580; }
-  .group-aviation .app:hover {
-    border-color: #44aaff;
-    background: rgba(68, 170, 255, 0.04);
-  }
-  .group-aviation .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(68,170,255,0.4), 0 0 20px rgba(68,170,255,0.3);
-  }
-  .group-aviation .prompt { color: #44aaff; }
-
-  /* Weather group — storm slate */
-  .group-weather > .section-header { color: #88aacc; text-shadow: 0 0 8px rgba(136,170,204,0.3); }
-  .group-weather > .section-header:hover { color: #aaccee; text-shadow: 0 0 12px rgba(136,170,204,0.5); }
-  .group-weather > .section-header .app-count { color: #445566; }
-  .group-weather .app-name { color: #88aacc; }
-  .group-weather .app { border-color: #445566; }
-  .group-weather .app:hover {
-    border-color: #88aacc;
-    background: rgba(136, 170, 204, 0.04);
-  }
-  .group-weather .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(136,170,204,0.4), 0 0 20px rgba(136,170,204,0.3);
-  }
-  .group-weather .prompt { color: #88aacc; }
-
-  /* Astronomy group — stellar teal */
-  .group-astronomy > .section-header { color: #33eebb; text-shadow: 0 0 8px rgba(51,238,187,0.3); }
-  .group-astronomy > .section-header:hover { color: #55ffcc; text-shadow: 0 0 12px rgba(51,238,187,0.5); }
-  .group-astronomy > .section-header .app-count { color: #1a7760; }
-  .group-astronomy .app-name { color: #33eebb; }
-  .group-astronomy .app { border-color: #1a7760; }
-  .group-astronomy .app:hover {
-    border-color: #33eebb;
-    background: rgba(51, 238, 187, 0.04);
-  }
-  .group-astronomy .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(51,238,187,0.4), 0 0 20px rgba(51,238,187,0.3);
-  }
-  .group-astronomy .prompt { color: #33eebb; }
-
-  /* Grand Game group — corporate red */
-  .group-grandgame > .section-header { color: #ff4444; text-shadow: 0 0 8px rgba(255,68,68,0.3); }
-  .group-grandgame > .section-header:hover { color: #ff6666; text-shadow: 0 0 12px rgba(255,68,68,0.5); }
-  .group-grandgame > .section-header .app-count { color: #802222; }
-  .group-grandgame .app-name { color: #ff4444; }
-  .group-grandgame .app { border-color: #802222; }
-  .group-grandgame .app:hover {
-    border-color: #ff4444;
-    background: rgba(255, 68, 68, 0.04);
-  }
-  .group-grandgame .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(255,68,68,0.4), 0 0 20px rgba(255,68,68,0.3);
-  }
-  .group-grandgame .prompt { color: #ff4444; }
-
-  /* General group — white/grey */
-  .group-general > .section-header { color: var(--white); text-shadow: 0 0 8px rgba(204,204,204,0.3); }
-  .group-general > .section-header:hover { color: #eeeeee; text-shadow: 0 0 12px rgba(204,204,204,0.5); }
-  .group-general > .section-header .app-count { color: var(--white-dim); }
-  .group-general .app-name { color: var(--white); }
-  .group-general .app { border-color: var(--white-dim); }
-  .group-general .app:hover {
-    border-color: var(--white);
-    background: rgba(204, 204, 204, 0.04);
-  }
-  .group-general .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(204,204,204,0.4), 0 0 20px rgba(204,204,204,0.3);
-  }
-  .group-general .prompt { color: var(--white); }
-
-  /* macOS group — cyan accent */
-  .group-macos > .section-header { color: #33ccff; text-shadow: 0 0 8px rgba(51,204,255,0.3); }
-  .group-macos > .section-header:hover { color: #55ddff; text-shadow: 0 0 12px rgba(51,204,255,0.5); }
-  .group-macos > .section-header .app-count { color: #1a6680; }
-  .group-macos .app-name { color: #33ccff; }
-  .group-macos .app { border-color: #1a6680; }
-  .group-macos .app:hover {
-    border-color: #33ccff;
-    background: rgba(51, 204, 255, 0.04);
-  }
-  .group-macos .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(51,204,255,0.4), 0 0 20px rgba(51,204,255,0.3);
-  }
-  .group-macos .prompt { color: #33ccff; }
-
-  /* App bundle group — magenta */
-  .group-bundle > .section-header { color: #ff66cc; text-shadow: 0 0 8px rgba(255,102,204,0.3); }
-  .group-bundle > .section-header:hover { color: #ff88dd; text-shadow: 0 0 12px rgba(255,102,204,0.5); }
-  .group-bundle > .section-header .app-count { color: #80336a; }
-  .group-bundle .app-name { color: #ff66cc; }
-  .group-bundle .app { border-color: #80336a; }
-  .group-bundle .app:hover {
-    border-color: #ff66cc;
-    background: rgba(255, 102, 204, 0.04);
-  }
-  .group-bundle .app:hover .app-name {
-    text-shadow: 0 0 10px rgba(255,102,204,0.4), 0 0 20px rgba(255,102,204,0.3);
-  }
-  .group-bundle .prompt { color: #ff66cc; }
-
-  .footer {
-    text-align: center;
-    padding: 16px 0 0 0;
-    font-size: 0.8rem;
-    color: var(--green-dim);
-    letter-spacing: 0.1em;
-    line-height: 1.8;
-  }
-
-  .footer a {
-    color: var(--green-dim);
-    text-decoration: none;
-  }
-  .footer a:hover {
-    color: var(--green);
-  }
-
-  .telemetry {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-size: 0.7rem;
-    color: var(--border);
-    letter-spacing: 0.08em;
-    padding: 12px 0 4px 0;
-  }
-
-  .fkey-bar {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    font-size: 0.75rem;
-    padding: 8px 0 16px 0;
-  }
-  .fkey-bar a {
-    color: var(--green-dim);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-  }
-  .fkey-bar a:hover {
-    color: var(--green);
-    text-shadow: 0 0 8px var(--green-glow);
-  }
-  .fkey-bar .fkey {
-    color: var(--border);
-  }
-
-  .cursor-blink {
-    animation: blink 1s step-end infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  .platforms {
-    font-size: 0.75rem;
-    color: var(--green-dim);
-    letter-spacing: 0.1em;
-    text-align: center;
-    margin-bottom: 24px;
-  }
-
-
-  /* Status bar */
-  .status-bar {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-size: 0.75rem;
-    color: var(--green-dim);
-    letter-spacing: 0.08em;
-    padding: 8px 0;
-    margin-bottom: 8px;
-  }
-
-  .status-item {
-    white-space: nowrap;
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 480px) {
-    .terminal { padding: 16px 12px; }
-    .header h1 { font-size: 1.05rem; letter-spacing: 0.2em; }
-    .app-name { font-size: 1.0rem; }
-    .app-row { flex-direction: column; gap: 2px; }
-    .app-tag { text-align: left; }
-    .prompt { display: none; }
-    .status-bar { gap: 8px; font-size: 0.7rem; }
-  }
-</style>
+<link rel="stylesheet" href="https://fractaldoctor.com/css/mainframe.css?v=3ea3896f">
+<script src="https://fractaldoctor.com/js/console.js?v=3ea3896f" defer></script>
 </head>
-<body>
+<body class="narrow">
+<div class="screen">
 
-<div class="terminal">
+  <header class="masthead">
+    <span class="system">FDOC07</span>
+    <h1 class="title">DR STUART WOOLLEY ── iOS &amp; macOS APPLICATIONS</h1>
+    <span class="position">49 LOADED</span>
+  </header>
 
-      <div class="status-bar">
-        <span class="status-item">TTY/07</span>
-        <span class="status-item">LINK:UP</span>
-        <span class="status-item">48 LOADED</span>
-        <span class="status-item">2026-10-24 17:38 UTC</span>
-      </div>
+  <form class="command" autocomplete="off">
+    <label for="cmd">COMMAND ===&gt;</label>
+    <input id="cmd" name="cmd" spellcheck="false" aria-label="Command">
+    <span class="scroll">SCROLL ===&gt; PAGE</span>
+  </form>
+  <p class="message">SELECT A GROUP TO EXPAND · ENTER HELP FOR COMMANDS</p>
 
-      <span class="corners tl">┌</span>
-      <span class="corners tr">┐</span>
-      <span class="corners bl">└</span>
-      <span class="corners br">┘</span>
+  <main>
+    <details class="group" data-group="astronomy">
+      <summary><span class="label">ASTRONOMY</span><span class="count">3</span></summary>
+      <ul class="catalogue">
+        <li><a href="escape-velocity-calculator/"><span class="name">Escape Velocity Calculator</span><span class="tag">ORBITAL PHYSICS</span><span class="desc">Newton&#x27;s cannon for any world. Fire from the Moon, Pluto or a neutron star and watch each shot fall back, orbit or escape, worked out on the device from NASA JPL figures. Native on iPad in every orientation, with an optional sidebar.</span></a></li>
+        <li><a href="meteor-wheel/"><span class="name">Meteor Wheel</span><span class="tag">METEOR SHOWER WHEEL</span><span class="desc">The meteor showers of the year on one clock face. A verdict on tonight from radiant altitude, moon and distance from peak, with a sightings log and a widget. Native on iPad, the wheel and plates at full size. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="phosphoroccult/"><span class="name">PhosphorOccult</span><span class="tag">OCCULTATION PREDICTOR</span><span class="desc">Stellar occultation predictor. Moon, planets, and asteroids passing in front of stars, computed on-device.</span></a></li>
+      </ul>
+    </details>
 
-      <div class="header">
-        <h1>DR STUART WOOLLEY</h1>
-        <div class="subtitle">iOS &amp; macOS APPLICATIONS</div>
-      </div>
+    <details class="group" data-group="aviation">
+      <summary><span class="label">AVIATION</span><span class="count">3</span></summary>
+      <ul class="catalogue">
+        <li><a href="irish-airports/"><span class="name">Irish Airports</span><span class="tag">IRISH AIRFIELD GUIDE</span><span class="desc">Every airfield on the island of Ireland. 153 open fields from Dublin and Shannon to farm strips, microlight fields, island aerodromes and heliports, with runways, frequencies, live METAR and TAF, 33 lost airfields and a logbook of passport stamps. Native on iPad in every orientation, and ready for iPhone Duo in every pose.</span></a></li>
+        <li><a href="phosphorwx/"><span class="name">PhosphorWX</span><span class="tag">AVIATION WEATHER</span><span class="desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display. Native iPad split view.</span></a></li>
+        <li><a href="world-airports/"><span class="name">World Airports</span><span class="tag">GLOBAL REFERENCE</span><span class="desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps. Native iPad split view.</span></a></li>
+      </ul>
+    </details>
 
+    <details class="group" data-group="datum">
+      <summary><span class="label">DATUM : MARITIME APPS</span><span class="count">4</span></summary>
+      <ul class="catalogue">
+        <li><a href="datumdeep/"><span class="name">DatumDeep</span><span class="tag">OCEAN DEPTH REFERENCE</span><span class="desc">Interactive ocean depth encyclopedia. 300+ wrecks, submarines, creatures, and records from surface to Challenger Deep.</span></a></li>
+        <li><a href="datumflag/"><span class="name">DatumFlag</span><span class="tag">MARITIME SIGNALS</span><span class="desc">International Code of Signals reference. All 40 ICS flags, two-flag codes, semaphore, and quiz modes.</span></a></li>
+        <li><a href="datumlight/"><span class="name">DatumLight</span><span class="tag">LIGHTHOUSE REFERENCE</span><span class="desc">Lighthouses of Britain and Ireland. Every light with flash patterns, Admiralty chart view, and CRT aesthetic.</span></a></li>
+        <li><a href="datummark/"><span class="name">DatumMark</span><span class="tag">MARITIME BUOYAGE</span><span class="desc">IALA buoyage system reference and exam prep. All 12 mark types, animated lights, Region A/B, and quiz modes.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-astronomy">
-    <summary class="section-header">ASTRONOMY <span class="app-count">[3]</span></summary>
-    <div class="app-list group-astronomy">
-    <a class="app" href="escape-velocity-calculator/">
-      <div class="app-row">
-        <span class="app-name">Escape Velocity Calculator</span>
-        <span class="app-tag">ORBITAL PHYSICS</span>
-      </div>
-      <div class="app-desc">Newton&#x27;s cannon for any world. Fire from the Moon, Pluto or a neutron star and watch each shot fall back, orbit or escape, worked out on the device from NASA JPL figures. Native on iPad in every orientation, with an optional sidebar.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="meteor-wheel/">
-      <div class="app-row">
-        <span class="app-name">Meteor Wheel</span>
-        <span class="app-tag">METEOR SHOWER WHEEL</span>
-      </div>
-      <div class="app-desc">The meteor showers of the year on one clock face. A verdict on tonight from radiant altitude, moon and distance from peak, with a sightings log and a widget. Native on iPad, the wheel and plates at full size. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphoroccult/">
-      <div class="app-row">
-        <span class="app-name">PhosphorOccult</span>
-        <span class="app-tag">OCCULTATION PREDICTOR</span>
-      </div>
-      <div class="app-desc">Stellar occultation predictor. Moon, planets, and asteroids passing in front of stars, computed on-device.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="energy">
+      <summary><span class="label">ENERGY MONITORING</span><span class="count">1</span></summary>
+      <ul class="catalogue">
+        <li><a href="gridcon/"><span class="name">GRIDCON</span><span class="tag">POWER GRID MONITOR</span><span class="desc">Ireland&#x27;s electricity grid as a car dashboard. Live frequency, demand, wind, solar, carbon, prices and power across the Irish Sea, straight from EirGrid. Native on iPad in every orientation, and ready for iPhone Duo in every pose.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-aviation">
-    <summary class="section-header">AVIATION <span class="app-count">[3]</span></summary>
-    <div class="app-list group-aviation">
-    <a class="app" href="irish-airports/">
-      <div class="app-row">
-        <span class="app-name">Irish Airports</span>
-        <span class="app-tag">IRISH AIRFIELD GUIDE</span>
-      </div>
-      <div class="app-desc">Every airfield on the island of Ireland. 153 open fields from Dublin and Shannon to farm strips, microlight fields, island aerodromes and heliports, with runways, frequencies, live METAR and TAF, 33 lost airfields and a logbook of passport stamps. Native on iPad in every orientation, and ready for iPhone Duo in every pose.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorwx/">
-      <div class="app-row">
-        <span class="app-name">PhosphorWX</span>
-        <span class="app-tag">AVIATION WEATHER</span>
-      </div>
-      <div class="app-desc">METAR/TAF aviation weather terminal. Worldwide station data on a retro CRT display. Native iPad split view.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="world-airports/">
-      <div class="app-row">
-        <span class="app-name">World Airports</span>
-        <span class="app-tag">GLOBAL REFERENCE</span>
-      </div>
-      <div class="app-desc">Comprehensive global airport reference. ICAO/IATA codes, frequencies, runways, and maps. Native iPad split view.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="environmental">
+      <summary><span class="label">ENVIRONMENTAL MONITORING</span><span class="count">3</span></summary>
+      <ul class="catalogue">
+        <li><a href="phosphorflow/"><span class="name">PhosphorFlow</span><span class="tag">RIVER MONITOR</span><span class="desc">Real-time Irish river level monitor. 453 OPW hydrometric stations, flood severity mapping, and push alerts.</span></a></li>
+        <li><a href="phosphorrad/"><span class="name">PhosphorRad</span><span class="tag">RADIATION MONITOR</span><span class="desc">Real-time EPA Ireland environmental radiation monitoring station data.</span></a></li>
+        <li><a href="phosphortide/"><span class="name">PhosphorTide</span><span class="tag">TIDE MONITOR</span><span class="desc">Real-time Irish coastal tide monitor. 38 stations via Marine Institute, wave buoys, and weather data. Native on iPad in every orientation. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-datum">
-    <summary class="section-header">DATUM : MARITIME APPS <span class="app-count">[4]</span></summary>
-    <div class="app-list group-datum">
-    <a class="app" href="datumdeep/">
-      <div class="app-row">
-        <span class="app-name">DatumDeep</span>
-        <span class="app-tag">OCEAN DEPTH REFERENCE</span>
-      </div>
-      <div class="app-desc">Interactive ocean depth encyclopedia. 300+ wrecks, submarines, creatures, and records from surface to Challenger Deep.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="datumflag/">
-      <div class="app-row">
-        <span class="app-name">DatumFlag</span>
-        <span class="app-tag">MARITIME SIGNALS</span>
-      </div>
-      <div class="app-desc">International Code of Signals reference. All 40 ICS flags, two-flag codes, semaphore, and quiz modes.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="datumlight/">
-      <div class="app-row">
-        <span class="app-name">DatumLight</span>
-        <span class="app-tag">LIGHTHOUSE REFERENCE</span>
-      </div>
-      <div class="app-desc">Lighthouses of Britain and Ireland. Every light with flash patterns, Admiralty chart view, and CRT aesthetic.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="datummark/">
-      <div class="app-row">
-        <span class="app-name">DatumMark</span>
-        <span class="app-tag">MARITIME BUOYAGE</span>
-      </div>
-      <div class="app-desc">IALA buoyage system reference and exam prep. All 12 mark types, animated lights, Region A/B, and quiz modes.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="esoteric">
+      <summary><span class="label">ESOTERIC</span><span class="count">8</span></summary>
+      <ul class="catalogue">
+        <li><a href="birthstones-wheel/"><span class="name">Birthstones Wheel</span><span class="tag">BIRTHSTONE LORE</span><span class="desc">Every tradition of birthstones on one wheel. 38 lists read from Kunz&#x27;s 1913 Curious Lore of Precious Stones, shown side by side, with birth profiles, a stone dictionary and widgets. Runs offline. Astronomy from AstroEngine, measured against NASA JPL. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose.</span></a></li>
+        <li><a href="celtic-tree-calendar/"><span class="name">Celtic Tree Calendar</span><span class="tag">OGHAM TREE LORE</span><span class="desc">The 13 tree-signs of the Beth-Luis-Nion year. Ogham glyphs, sourced mythology and folklore, an interactive wheel, and the Graves provenance told plainly. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose.</span></a></li>
+        <li><a href="mansions-of-the-moon/"><span class="name">Mansions of the Moon</span><span class="tag">LUNAR ASTROLOGY</span><span class="desc">The 28 lunar mansions of celestial magic. Real-time ecliptic longitude, ruling angels, and traditional influences from Agrippa and Barrett. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="superstitions/"><span class="name">Superstitions</span><span class="tag">FOLKLORE ALMANAC</span><span class="desc">Folklore that knows the day. Over 2,800 sourced beliefs offered for today&#x27;s date, feast, moon, eclipse or meteor shower, with Occasions, Sky, a Dictionary and widgets. Native on iPad in every orientation. Runs offline. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="wiccan-clock/"><span class="name">Wiccan Clock</span><span class="tag">PLANETARY HOURS</span><span class="desc">The planetary hours for your own place and date. A dial drawing the twenty-four unequal hours at their real lengths, a schedule for any day, and a planner that finds the hour you want up to a year ahead, with the Key of Solomon quoted on every hour. Native on iPad in every orientation, and ready for iPhone Duo. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="wiccan-moon/"><span class="name">Wiccan Moon</span><span class="tag">LUNAR TRADITIONS</span><span class="desc">Track the moon through the eyes of seven ancient and modern spiritual traditions. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="wiccan-wheel-of-the-year/"><span class="name">Wiccan Wheel of the Year</span><span class="tag">SABBAT CALENDAR</span><span class="desc">The eight sabbats of the solar year on one wheel, computed for your location and hemisphere rather than taken from fixed calendar dates. Native on iPad in every orientation, the festival panel beside the wheel, and ready for iPhone Duo in every pose. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="zodiac-wheel/"><span class="name">Zodiac Wheel</span><span class="tag">ASTROLOGY ENGINE</span><span class="desc">On-device astrological instrument. Planetary positions, aspects, retrogrades, and full birth charts computed from JPL elements, with no account, no server and no internet. Native on iPad in every orientation.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-energy">
-    <summary class="section-header">ENERGY MONITORING <span class="app-count">[1]</span></summary>
-    <div class="app-list group-energy">
-    <a class="app" href="gridcon/">
-      <div class="app-row">
-        <span class="app-name">GRIDCON</span>
-        <span class="app-tag">POWER GRID MONITOR</span>
-      </div>
-      <div class="app-desc">Ireland&#x27;s electricity grid as a car dashboard. Live frequency, demand, wind, solar, carbon, prices and power across the Irish Sea, straight from EirGrid. Native on iPad in every orientation, and ready for iPhone Duo in every pose.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="renewable">
+      <summary><span class="label">HOME ENERGY</span><span class="count">3</span></summary>
+      <ul class="catalogue">
+        <li><a href="ber-estimator/"><span class="name">BER Estimator</span><span class="tag">ENERGY RATING</span><span class="desc">Irish home BER rating estimator. DEAP-based calculation, energy cost breakdown, and retrofit suggestions — no assessor required.</span></a></li>
+        <li><a href="noxpump/"><span class="name">NoxPump</span><span class="tag">HEAT PUMP PLANNER</span><span class="desc">Heat pump planning and cost calculator. NASA POWER climate data, ASHP vs GSHP comparison, payback projections, and CO₂ savings.</span></a></li>
+        <li><a href="noxsolar/"><span class="name">NoxSolar</span><span class="tag">SOLAR PLANNING</span><span class="desc">Solar panel planning tool. NASA POWER irradiance data, yield calculator, financial projections, and location comparison. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-environmental">
-    <summary class="section-header">ENVIRONMENTAL MONITORING <span class="app-count">[3]</span></summary>
-    <div class="app-list group-environmental">
-    <a class="app" href="phosphorflow/">
-      <div class="app-row">
-        <span class="app-name">PhosphorFlow</span>
-        <span class="app-tag">RIVER MONITOR</span>
-      </div>
-      <div class="app-desc">Real-time Irish river level monitor. 453 OPW hydrometric stations, flood severity mapping, and push alerts.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorrad/">
-      <div class="app-row">
-        <span class="app-name">PhosphorRad</span>
-        <span class="app-tag">RADIATION MONITOR</span>
-      </div>
-      <div class="app-desc">Real-time EPA Ireland environmental radiation monitoring station data.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphortide/">
-      <div class="app-row">
-        <span class="app-name">PhosphorTide</span>
-        <span class="app-tag">TIDE MONITOR</span>
-      </div>
-      <div class="app-desc">Real-time Irish coastal tide monitor. 38 stations via Marine Institute, wave buoys, and weather data. Native on iPad in every orientation. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="general">
+      <summary><span class="label">REFERENCE</span><span class="count">2</span></summary>
+      <ul class="catalogue">
+        <li><a href="country-dialling-codes/"><span class="name">Country Dialling Codes</span><span class="tag">TELECOMS REFERENCE</span><span class="desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison. Native on iPad in every orientation.</span></a></li>
+        <li><a href="irish-real-time-rail/"><span class="name">Irish Real Time Rail</span><span class="tag">TRAVEL</span><span class="desc">Every train in Ireland, live. Irish Real Time Rail shows live departures for every DART, commuter and intercity station in the country, and…</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-esoteric">
-    <summary class="section-header">ESOTERIC <span class="app-count">[8]</span></summary>
-    <div class="app-list group-esoteric">
-    <a class="app" href="birthstones-wheel/">
-      <div class="app-row">
-        <span class="app-name">Birthstones Wheel</span>
-        <span class="app-tag">BIRTHSTONE LORE</span>
-      </div>
-      <div class="app-desc">Every tradition of birthstones on one wheel. 38 lists read from Kunz&#x27;s 1913 Curious Lore of Precious Stones, shown side by side, with birth profiles, a stone dictionary and widgets. Runs offline. Astronomy from AstroEngine, measured against NASA JPL. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="celtic-tree-calendar/">
-      <div class="app-row">
-        <span class="app-name">Celtic Tree Calendar</span>
-        <span class="app-tag">OGHAM TREE LORE</span>
-      </div>
-      <div class="app-desc">The 13 tree-signs of the Beth-Luis-Nion year. Ogham glyphs, sourced mythology and folklore, an interactive wheel, and the Graves provenance told plainly. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="mansions-of-the-moon/">
-      <div class="app-row">
-        <span class="app-name">Mansions of the Moon</span>
-        <span class="app-tag">LUNAR ASTROLOGY</span>
-      </div>
-      <div class="app-desc">The 28 lunar mansions of celestial magic. Real-time ecliptic longitude, ruling angels, and traditional influences from Agrippa and Barrett. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="superstitions/">
-      <div class="app-row">
-        <span class="app-name">Superstitions</span>
-        <span class="app-tag">FOLKLORE ALMANAC</span>
-      </div>
-      <div class="app-desc">Folklore that knows the day. Over 2,800 sourced beliefs offered for today&#x27;s date, feast, moon, eclipse or meteor shower, with Occasions, Sky, a Dictionary and widgets. Native on iPad in every orientation. Runs offline. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="wiccan-clock/">
-      <div class="app-row">
-        <span class="app-name">Wiccan Clock</span>
-        <span class="app-tag">PLANETARY HOURS</span>
-      </div>
-      <div class="app-desc">The planetary hours for your own place and date. A dial drawing the twenty-four unequal hours at their real lengths, a schedule for any day, and a planner that finds the hour you want up to a year ahead, with the Key of Solomon quoted on every hour. Native on iPad in every orientation, and ready for iPhone Duo. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="wiccan-moon/">
-      <div class="app-row">
-        <span class="app-name">Wiccan Moon</span>
-        <span class="app-tag">LUNAR TRADITIONS</span>
-      </div>
-      <div class="app-desc">Track the moon through the eyes of seven ancient and modern spiritual traditions. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="wiccan-wheel-of-the-year/">
-      <div class="app-row">
-        <span class="app-name">Wiccan Wheel of the Year</span>
-        <span class="app-tag">SABBAT CALENDAR</span>
-      </div>
-      <div class="app-desc">The eight sabbats of the solar year on one wheel, computed for your location and hemisphere rather than taken from fixed calendar dates. Native on iPad in every orientation, the festival panel beside the wheel, and ready for iPhone Duo in every pose. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="zodiac-wheel/">
-      <div class="app-row">
-        <span class="app-name">Zodiac Wheel</span>
-        <span class="app-tag">ASTROLOGY ENGINE</span>
-      </div>
-      <div class="app-desc">On-device astrological instrument. Planetary positions, aspects, retrogrades, and full birth charts computed from JPL elements, with no account, no server and no internet. Native on iPad in every orientation.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="rpg">
+      <summary><span class="label">ROLE PLAYING GAMES / CTHULHU MYTHOS</span><span class="count">1</span></summary>
+      <ul class="catalogue">
+        <li><a href="eldritch-generator/"><span class="name">Eldritch Generator</span><span class="tag">COSMIC HORROR RPG</span><span class="desc">Procedural cosmic horror generator. Entities, artefacts, tomes, cults, locations, and plot hooks — millions of combinations for GMs and writers. Native on iPad in every orientation.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-renewable">
-    <summary class="section-header">HOME ENERGY <span class="app-count">[3]</span></summary>
-    <div class="app-list group-renewable">
-    <a class="app" href="ber-estimator/">
-      <div class="app-row">
-        <span class="app-name">BER Estimator</span>
-        <span class="app-tag">ENERGY RATING</span>
-      </div>
-      <div class="app-desc">Irish home BER rating estimator. DEAP-based calculation, energy cost breakdown, and retrofit suggestions — no assessor required.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="noxpump/">
-      <div class="app-row">
-        <span class="app-name">NoxPump</span>
-        <span class="app-tag">HEAT PUMP PLANNER</span>
-      </div>
-      <div class="app-desc">Heat pump planning and cost calculator. NASA POWER climate data, ASHP vs GSHP comparison, payback projections, and CO₂ savings.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="noxsolar/">
-      <div class="app-row">
-        <span class="app-name">NoxSolar</span>
-        <span class="app-tag">SOLAR PLANNING</span>
-      </div>
-      <div class="app-desc">Solar panel planning tool. NASA POWER irradiance data, yield calculator, financial projections, and location comparison. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="nacht">
+      <summary><span class="label">NACHT : RETROGAMING APPS</span><span class="count">2</span></summary>
+      <ul class="catalogue">
+        <li><a href="nachtcloak/"><span class="name">NachtCloak</span><span class="tag">COLD WAR ASAT</span><span class="desc">Cold War anti-satellite engagement. Triangulate a cloaked Soviet spy satellite in polar orbit before it transmits. Based on Lederer&#x27;s Orbit (1978).</span></a></li>
+        <li><a href="nachtlander/"><span class="name">NachtLander</span><span class="tag">RETRO LUNAR LANDER</span><span class="desc">1969 Storer physics lunar lander. Ten celestial bodies, phosphor terminal aesthetic, no undo.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-general">
-    <summary class="section-header">REFERENCE <span class="app-count">[1]</span></summary>
-    <div class="app-list group-general">
-    <a class="app" href="country-dialling-codes/">
-      <div class="app-row">
-        <span class="app-name">Country Dialling Codes</span>
-        <span class="app-tag">TELECOMS REFERENCE</span>
-      </div>
-      <div class="app-desc">Every country&#x27;s international dialling code. Satellite maps, live time comparison. Native on iPad in every orientation.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="orbital">
+      <summary><span class="label">ORBITAL OBSERVATION</span><span class="count">3</span></summary>
+      <ul class="catalogue">
+        <li><a href="phosphorbeam/"><span class="name">PhosphorBeam</span><span class="tag">SATELLITE TRACKER</span><span class="desc">Real-time amateur radio satellite tracker. SGP4 propagation, pass predictions, and Doppler-corrected frequencies. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="phosphororbit/"><span class="name">PhosphorOrbit</span><span class="tag">SPACE SURVEILLANCE</span><span class="desc">Live NORAD catalogue tracking with SGP4 propagation. Cold War-era radar scope aesthetic. Native on iPad in every orientation. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="phosphorsol/"><span class="name">PhosphorSol</span><span class="tag">SPACE WEATHER</span><span class="desc">Real-time space weather monitoring. Live NOAA/SWPC solar data on a retro CRT display.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-rpg">
-    <summary class="section-header">ROLE PLAYING GAMES / CTHULHU MYTHOS <span class="app-count">[1]</span></summary>
-    <div class="app-list group-rpg">
-    <a class="app" href="eldritch-generator/">
-      <div class="app-row">
-        <span class="app-name">Eldritch Generator</span>
-        <span class="app-tag">COSMIC HORROR RPG</span>
-      </div>
-      <div class="app-desc">Procedural cosmic horror generator. Entities, artefacts, tomes, cults, locations, and plot hooks — millions of combinations for GMs and writers. Native on iPad in every orientation.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="phosphor">
+      <summary><span class="label">SHORT WAVE UTILITIES</span><span class="count">13</span></summary>
+      <ul class="catalogue">
+        <li><a href="phantomgram/"><span class="name">PhantomGram</span><span class="tag">SPECTRUM PAINTER</span><span class="desc">Spectrum painting for amateur radio. Transmit and decode images painted onto SDR waterfall displays.</span></a></li>
+        <li><a href="phosphorcw/"><span class="name">PhosphorCW</span><span class="tag">CW DECODER</span><span class="desc">Real-time Morse code decoder. CW signal detection via your iPhone or iPad microphone with automatic frequency and speed tracking. Native on iPad in every orientation.</span></a></li>
+        <li><a href="phosphorcalc/"><span class="name">PhosphorCalc</span><span class="tag">RF CALCULATOR</span><span class="desc">Ten RF and antenna calculators for amateur radio. Dipole lengths, path loss, SWR, link budgets, impedance matching. No network required.</span></a></li>
+        <li><a href="phosphordsc/"><span class="name">PhosphorDSC</span><span class="tag">DSC DECODER</span><span class="desc">Real-time Digital Selective Calling decoder. HF and MF GMDSS distress, urgency, safety and routine calls with MMSI, position and ECC check — ITU-R M.493 via your iPhone microphone.</span></a></li>
+        <li><a href="phosphorfax/"><span class="name">PhosphorFAX</span><span class="tag">RADIOFAX CODEC</span><span class="desc">Real-time HF weather fax receiver and sender. Coast-station charts painted line by line through your iPhone microphone, with phasing lock and slant correction — and a send path for a photo, a chart or the test card.</span></a></li>
+        <li><a href="phosphorfeld/"><span class="name">PhosphorFeld</span><span class="tag">FELDHELL DECODER</span><span class="desc">Real-time Hellschreiber decoder. Feld-Hell signals via your iPhone microphone — the oldest digital mode still in use, where your own eyes do the decoding.</span></a></li>
+        <li><a href="phosphorhertz/"><span class="name">PhosphorHertz</span><span class="tag">HF PROPAGATION</span><span class="desc">Real-time HF radio propagation monitor. NOAA space weather data translated into band-by-band conditions. Native on iPad, drawn larger for the bigger screen. Astronomy from AstroEngine, measured against NASA JPL.</span></a></li>
+        <li><a href="phosphorpsk/"><span class="name">PhosphorPSK</span><span class="tag">PSK31 DECODER</span><span class="desc">Real-time PSK31 decoder. BPSK31, 63, and 125 signals via your iPhone microphone, with FFT waterfall and constellation vector scope.</span></a></li>
+        <li><a href="phosphorrtty/"><span class="name">PhosphorRTTY</span><span class="tag">RTTY DECODER</span><span class="desc">Real-time RTTY signal decoder. Shortwave radio teletype via your iPhone or iPad microphone, with automatic baud, shift and tuning. Native on iPad in every orientation.</span></a></li>
+        <li><a href="phosphorsstv/"><span class="name">PhosphorSSTV</span><span class="tag">SSTV CODEC</span><span class="desc">Slow Scan Television encoder and decoder. Encode or decode SSTV images via your iPhone microphone — ten modes including Scottie, Martin, and Robot.</span></a></li>
+        <li><a href="phosphorswl/"><span class="name">PhosphorSWL</span><span class="tag">SWL BROWSER</span><span class="desc">Shortwave broadcast schedule browser and numbers station reference. EiBi database, scanner, and Cold War SIGINT aesthetic. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose.</span></a></li>
+        <li><a href="phosphortex/"><span class="name">PhosphorTEX</span><span class="tag">NAVTEX DECODER</span><span class="desc">Real-time NAVTEX maritime-safety decoder. 518 kHz gale warnings, SAR alerts, ice reports — CCIR-476 SITOR-B via your iPhone or iPad microphone. Native on iPad in every orientation.</span></a></li>
+        <li><a href="q-codes-reference/"><span class="name">Q Codes Reference</span><span class="tag">CW OPERATING TRAINER</span><span class="desc">Amateur radio operating vocabulary, drilled rather than tabulated. 106 Q codes, prosigns, abbreviations and phonetics, with IARU band plans and a signal report builder.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-nacht">
-    <summary class="section-header">NACHT : RETROGAMING APPS <span class="app-count">[2]</span></summary>
-    <div class="app-list group-nacht">
-    <a class="app" href="nachtcloak/">
-      <div class="app-row">
-        <span class="app-name">NachtCloak</span>
-        <span class="app-tag">COLD WAR ASAT</span>
-      </div>
-      <div class="app-desc">Cold War anti-satellite engagement. Triangulate a cloaked Soviet spy satellite in polar orbit before it transmits. Based on Lederer&#x27;s Orbit (1978).</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="nachtlander/">
-      <div class="app-row">
-        <span class="app-name">NachtLander</span>
-        <span class="app-tag">RETRO LUNAR LANDER</span>
-      </div>
-      <div class="app-desc">1969 Storer physics lunar lander. Ten celestial bodies, phosphor terminal aesthetic, no undo.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="grandgame">
+      <summary><span class="label">THE GRAND GAME OF SOFTWARE ENGINEERING</span><span class="count">1</span></summary>
+      <p class="intro">Apps derived from the <a href="https://medium.com/the-grand-game-of-software-engineering" target="_blank" rel="noopener">essays on Medium</a> exploring the absurdity of corporate software engineering — meetings, managers, and the quiet heroism of actually writing code.</p>
+      <ul class="catalogue">
+        <li><a href="peakmanager/"><span class="name">PeakManager</span><span class="tag">CORPORATE SATIRE</span><span class="desc">How much manager are you? 420 questions measuring your Corporate Management Energy™ on a scale of 0 to 100.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-orbital">
-    <summary class="section-header">ORBITAL OBSERVATION <span class="app-count">[3]</span></summary>
-    <div class="app-list group-orbital">
-    <a class="app" href="phosphorbeam/">
-      <div class="app-row">
-        <span class="app-name">PhosphorBeam</span>
-        <span class="app-tag">SATELLITE TRACKER</span>
-      </div>
-      <div class="app-desc">Real-time amateur radio satellite tracker. SGP4 propagation, pass predictions, and Doppler-corrected frequencies. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphororbit/">
-      <div class="app-row">
-        <span class="app-name">PhosphorOrbit</span>
-        <span class="app-tag">SPACE SURVEILLANCE</span>
-      </div>
-      <div class="app-desc">Live NORAD catalogue tracking with SGP4 propagation. Cold War-era radar scope aesthetic. Native on iPad in every orientation. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorsol/">
-      <div class="app-row">
-        <span class="app-name">PhosphorSol</span>
-        <span class="app-tag">SPACE WEATHER</span>
-      </div>
-      <div class="app-desc">Real-time space weather monitoring. Live NOAA/SWPC solar data on a retro CRT display.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="travel">
+      <summary><span class="label">TRAVEL</span><span class="count">1</span></summary>
+      <ul class="catalogue">
+        <li><a href="retrorail/"><span class="name">RetroRail</span><span class="tag">IRISH RAIL TRAVEL</span><span class="desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-phosphor">
-    <summary class="section-header">SHORT WAVE UTILITIES <span class="app-count">[13]</span></summary>
-    <div class="app-list group-phosphor">
-    <a class="app" href="phantomgram/">
-      <div class="app-row">
-        <span class="app-name">PhantomGram</span>
-        <span class="app-tag">SPECTRUM PAINTER</span>
-      </div>
-      <div class="app-desc">Spectrum painting for amateur radio. Transmit and decode images painted onto SDR waterfall displays.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorcw/">
-      <div class="app-row">
-        <span class="app-name">PhosphorCW</span>
-        <span class="app-tag">CW DECODER</span>
-      </div>
-      <div class="app-desc">Real-time Morse code decoder. CW signal detection via your iPhone or iPad microphone with automatic frequency and speed tracking. Native on iPad in every orientation.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorcalc/">
-      <div class="app-row">
-        <span class="app-name">PhosphorCalc</span>
-        <span class="app-tag">RF CALCULATOR</span>
-      </div>
-      <div class="app-desc">Ten RF and antenna calculators for amateur radio. Dipole lengths, path loss, SWR, link budgets, impedance matching. No network required.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphordsc/">
-      <div class="app-row">
-        <span class="app-name">PhosphorDSC</span>
-        <span class="app-tag">DSC DECODER</span>
-      </div>
-      <div class="app-desc">Real-time Digital Selective Calling decoder. HF and MF GMDSS distress, urgency, safety and routine calls with MMSI, position and ECC check — ITU-R M.493 via your iPhone microphone.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorfax/">
-      <div class="app-row">
-        <span class="app-name">PhosphorFAX</span>
-        <span class="app-tag">RADIOFAX CODEC</span>
-      </div>
-      <div class="app-desc">Real-time HF weather fax receiver and sender. Coast-station charts painted line by line through your iPhone microphone, with phasing lock and slant correction — and a send path for a photo, a chart or the test card.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorfeld/">
-      <div class="app-row">
-        <span class="app-name">PhosphorFeld</span>
-        <span class="app-tag">FELDHELL DECODER</span>
-      </div>
-      <div class="app-desc">Real-time Hellschreiber decoder. Feld-Hell signals via your iPhone microphone — the oldest digital mode still in use, where your own eyes do the decoding.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorhertz/">
-      <div class="app-row">
-        <span class="app-name">PhosphorHertz</span>
-        <span class="app-tag">HF PROPAGATION</span>
-      </div>
-      <div class="app-desc">Real-time HF radio propagation monitor. NOAA space weather data translated into band-by-band conditions. Native on iPad, drawn larger for the bigger screen. Astronomy from AstroEngine, measured against NASA JPL.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorpsk/">
-      <div class="app-row">
-        <span class="app-name">PhosphorPSK</span>
-        <span class="app-tag">PSK31 DECODER</span>
-      </div>
-      <div class="app-desc">Real-time PSK31 decoder. BPSK31, 63, and 125 signals via your iPhone microphone, with FFT waterfall and constellation vector scope.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorrtty/">
-      <div class="app-row">
-        <span class="app-name">PhosphorRTTY</span>
-        <span class="app-tag">RTTY DECODER</span>
-      </div>
-      <div class="app-desc">Real-time RTTY signal decoder. Shortwave radio teletype via your iPhone or iPad microphone, with automatic baud, shift and tuning. Native on iPad in every orientation.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorsstv/">
-      <div class="app-row">
-        <span class="app-name">PhosphorSSTV</span>
-        <span class="app-tag">SSTV CODEC</span>
-      </div>
-      <div class="app-desc">Slow Scan Television encoder and decoder. Encode or decode SSTV images via your iPhone microphone — ten modes including Scottie, Martin, and Robot.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphorswl/">
-      <div class="app-row">
-        <span class="app-name">PhosphorSWL</span>
-        <span class="app-tag">SWL BROWSER</span>
-      </div>
-      <div class="app-desc">Shortwave broadcast schedule browser and numbers station reference. EiBi database, scanner, and Cold War SIGINT aesthetic. Native on iPad in every orientation, with an optional sidebar, and ready for iPhone Duo in every pose.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="phosphortex/">
-      <div class="app-row">
-        <span class="app-name">PhosphorTEX</span>
-        <span class="app-tag">NAVTEX DECODER</span>
-      </div>
-      <div class="app-desc">Real-time NAVTEX maritime-safety decoder. 518 kHz gale warnings, SAR alerts, ice reports — CCIR-476 SITOR-B via your iPhone or iPad microphone. Native on iPad in every orientation.</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="q-codes-reference/">
-      <div class="app-row">
-        <span class="app-name">Q Codes Reference</span>
-        <span class="app-tag">CW OPERATING TRAINER</span>
-      </div>
-      <div class="app-desc">Amateur radio operating vocabulary, drilled rather than tabulated. 106 Q codes, prosigns, abbreviations and phonetics, with IARU band plans and a signal report builder.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="weather">
+      <summary><span class="label">WEATHER</span><span class="count">1</span></summary>
+      <ul class="catalogue">
+        <li><a href="wxcon/"><span class="name">WXCON</span><span class="tag">WEATHER THREAT CONSOLE</span><span class="desc">Irish weather warnings as a Cold War threat assessment. Met Éireann and Open-Meteo data, DEFCON aesthetic.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-grandgame">
-    <summary class="section-header">THE GRAND GAME OF SOFTWARE ENGINEERING <span class="app-count">[1]</span></summary>
-    <div class="section-intro">Apps derived from the <a href="https://medium.com/the-grand-game-of-software-engineering" target="_blank" rel="noopener">essays on Medium</a> exploring the absurdity of corporate software engineering — meetings, managers, and the quiet heroism of actually writing code.</div>
-    <div class="app-list group-grandgame">
-    <a class="app" href="peakmanager/">
-      <div class="app-row">
-        <span class="app-name">PeakManager</span>
-        <span class="app-tag">CORPORATE SATIRE</span>
-      </div>
-      <div class="app-desc">How much manager are you? 420 questions measuring your Corporate Management Energy™ on a scale of 0 to 100.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="macos">
+      <summary><span class="label">SPECIFIC macOS APPLICATIONS</span><span class="count">1</span></summary>
+      <ul class="catalogue">
+        <li><a href="retrorail/"><span class="name">RetroRail</span><span class="tag">IRISH RAIL TRAVEL</span><span class="desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-travel">
-    <summary class="section-header">TRAVEL <span class="app-count">[1]</span></summary>
-    <div class="app-list group-travel">
-    <a class="app" href="retrorail/">
-      <div class="app-row">
-        <span class="app-name">RetroRail</span>
-        <span class="app-tag">IRISH RAIL TRAVEL</span>
-      </div>
-      <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <details class="group" data-group="bundle">
+      <summary><span class="label">APP BUNDLES</span><span class="count">2</span></summary>
+      <p class="intro">Member apps are also sold individually. A bundle is priced below the sum of its members and prorates against anything already owned.</p>
+      <ul class="catalogue">
+        <li><a href="https://apps.apple.com/us/app-bundle/id1889878962" target="_blank" rel="noopener"><span class="name">Phosphor SWL Suite</span><span class="tag">7 APPS</span><span class="desc">PhosphorRTTY · PhosphorCW · PhosphorSSTV · PhosphorHertz · PhosphorCalc · PhantomGram · PhosphorSWL</span></a></li>
+        <li><a href="https://apps.apple.com/us/app-bundle/id6808578195" target="_blank" rel="noopener"><span class="name">Phosphor SWL Suite II</span><span class="tag">7 APPS</span><span class="desc">PhosphorPSK · PhosphorFeld · PhosphorTEX · PhosphorSol · PhosphorBeam · PhosphorOrbit · PhosphorWX</span></a></li>
+      </ul>
+    </details>
 
-  <details class="section group-weather">
-    <summary class="section-header">WEATHER <span class="app-count">[1]</span></summary>
-    <div class="app-list group-weather">
-    <a class="app" href="wxcon/">
-      <div class="app-row">
-        <span class="app-name">WXCON</span>
-        <span class="app-tag">WEATHER THREAT CONSOLE</span>
-      </div>
-      <div class="app-desc">Irish weather warnings as a Cold War threat assessment. Met Éireann and Open-Meteo data, DEFCON aesthetic.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+    <p class="notice">MOST APPS €0.99 — PeakManager: FREE</p>
+  </main>
 
-  <details class="section group-macos">
-    <summary class="section-header">SPECIFIC macOS APPLICATIONS <span class="app-count">[1]</span></summary>
-    <div class="app-list group-macos">
-    <a class="app" href="retrorail/">
-      <div class="app-row">
-        <span class="app-name">RetroRail</span>
-        <span class="app-tag">IRISH RAIL TRAVEL</span>
-      </div>
-      <div class="app-desc">Live Irish Rail departure and arrival data. Real-time platform boards, retro style.</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
+  <nav class="keys">
+    <a href="https://fractaldoctor.com/" data-key="1" data-cmd="HOME">PF1=HOME</a>
+    <a href="https://fractaldoctor.medium.com" target="_blank" rel="noopener" data-key="2" data-cmd="MEDIUM">PF2=MEDIUM</a>
+    <a href="https://fractaldoctor.github.io/BookShowcase/" data-key="3" data-cmd="BOOKS">PF3=BOOKS</a>
+  </nav>
 
-  <details class="section group-bundle">
-    <summary class="section-header">APP BUNDLES <span class="app-count">[2]</span></summary>
-    <div class="section-intro">Member apps are also sold individually. A bundle is priced below the sum of its members and prorates against anything already owned.</div>
-    <div class="app-list group-bundle">
-    <a class="app" href="https://apps.apple.com/us/app-bundle/id1889878962" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">Phosphor SWL Suite</span>
-        <span class="app-tag">7 APPS</span>
-      </div>
-      <div class="app-desc">PhosphorRTTY · PhosphorCW · PhosphorSSTV · PhosphorHertz · PhosphorCalc · PhantomGram · PhosphorSWL</div>
-      <span class="prompt">▸</span>
-    </a>
-    <a class="app" href="https://apps.apple.com/us/app-bundle/id6808578195" target="_blank" rel="noopener">
-      <div class="app-row">
-        <span class="app-name">Phosphor SWL Suite II</span>
-        <span class="app-tag">7 APPS</span>
-      </div>
-      <div class="app-desc">PhosphorPSK · PhosphorFeld · PhosphorTEX · PhosphorSol · PhosphorBeam · PhosphorOrbit · PhosphorWX</div>
-      <span class="prompt">▸</span>
-    </a>
-    </div>
-  </details>
-
-
-      <div class="footer">
-        MOST APPS €0.99 — PeakManager: FREE
-      </div>
-
-      <div class="telemetry">
-        <span>VT220</span>
-        <span>9600,8N1</span>
-        <span>BUF:64K</span>
-        <span>SNR:NOMINAL</span>
-        <span>PARITY:NONE</span>
-      </div>
-
-      <div class="fkey-bar">
-        <a href="https://fractaldoctor.medium.com" target="_blank" rel="noopener"><span class="fkey">F1=</span>MEDIUM</a>
-        <a href="https://fractaldoctor.github.io/BookShowcase/" target="_blank" rel="noopener"><span class="fkey">F2=</span>BOOKS</a>
-        <a href="https://fractaldoctor.github.io/Socials/" target="_blank" rel="noopener"><span class="fkey">F3=</span>SOCIAL</a>
-      </div>
+  <footer class="trailer">
+    <span>FONT: 3270 (RICARDO BANFFY, BSD)</span>
+    <span>GENERATED 2026-11-04 19:08 UTC</span>
+  </footer>
 
 </div>
-
 </body>
 </html>

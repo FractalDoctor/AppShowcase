@@ -12,9 +12,8 @@
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://fractaldoctor.github.io/AppShowcase/gridcon/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='3' y='24' font-family='monospace' font-size='22' fill='%2333ff33'>></text><text x='16' y='24' font-family='monospace' font-size='22' fill='%2333ff33'>_</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fractaldoctor.com/css/mainframe.css?v=3ea3896f">
+<script src="https://fractaldoctor.com/js/console.js?v=3ea3896f" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,252 +33,47 @@
   "description": "Ireland electricity grid app for iPhone and iPad. Live All-Island grid frequency and demand on twin gauges, wind and solar against EirGrid's forecasts, SNSP and the fuel mix, carbon intensity with the cleanest time ahead, the imbalance price, and power flowing along EWIC, Greenlink and Moyle on a live chart of the Irish Sea. Runs natively on iPad in every orientation, its panels side by side, and is ready for iPhone Duo, setting the panels in two columns across the inner display and one beside the tab bar on the outer. No account, no ads and no tracking."
 }
 </script>
-<style>
-  :root {
-    --bg: #0a0a0a;
-    --green: #33ff33;
-    --green-dim: #33cc33;
-    --green-glow: #33ff3344;
-    --border: #2a882a;
-    --font: 'Share Tech Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
-    --accent: #ffdd44;
-    --accent-dim: #806e22;
-    --accent-glow: rgba(255,221,68,0.3);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--green);
-    font-family: var(--font);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
-    pointer-events: none;
-    z-index: 999;
-  }
-
-  .terminal {
-    max-width: 720px;
-    margin: 16px auto;
-    padding: 24px 20px;
-    border: 1px solid var(--border);
-    position: relative;
-  }
-
-  .corners {
-    position: absolute;
-    font-size: 0.85rem;
-    color: var(--green-dim);
-  }
-  .corners.tl { top: 4px; left: 8px; }
-  .corners.tr { top: 4px; right: 8px; }
-  .corners.bl { bottom: 4px; left: 8px; }
-  .corners.br { bottom: 4px; right: 8px; }
-
-  .breadcrumb {
-    font-size: 0.8rem;
-    color: var(--green-dim);
-    letter-spacing: 0.1em;
-    margin-bottom: 24px;
-  }
-  .breadcrumb a {
-    color: var(--green-dim);
-    text-decoration: none;
-  }
-  .breadcrumb a:hover {
-    color: var(--green);
-    text-shadow: 0 0 8px var(--green-glow);
-  }
-
-  .app-header {
-    margin-bottom: 24px;
-  }
-  .app-header h1 {
-    font-size: 1.4rem;
-    font-weight: normal;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
-    margin-bottom: 4px;
-  }
-  .app-header .tag {
-    font-size: 0.9rem;
-    color: var(--accent-dim);
-    letter-spacing: 0.15em;
-  }
-  .app-header .section-label {
-    font-size: 0.75rem;
-    color: var(--accent-dim);
-    letter-spacing: 0.12em;
-    margin-top: 8px;
-  }
-
-  .app-body {
-    margin-bottom: 24px;
-    line-height: 1.6;
-  }
-  .app-body .curated {
-    font-size: 1.0rem;
-    color: var(--accent);
-    margin-bottom: 16px;
-    text-shadow: 0 0 6px var(--accent-glow);
-  }
-  .app-body .seo {
-    font-size: 0.9rem;
-    color: var(--green-dim);
-    line-height: 1.7;
-  }
-  .app-body .review {
-    border-left: 1px solid var(--accent-dim);
-    padding: 10px 0 10px 16px;
-    margin: 20px 0 4px 0;
-    font-size: 0.95rem;
-    color: var(--accent);
-  }
-  .app-body .review .stars {
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 6px var(--accent-glow);
-  }
-  .app-body .review .attrib {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    color: var(--accent-dim);
-  }
-
-  .store-link {
-    display: inline-block;
-    border: 1px solid var(--accent-dim);
-    padding: 12px 24px;
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 1.0rem;
-    letter-spacing: 0.15em;
-    transition: border-color 0.15s ease, background 0.15s ease, text-shadow 0.15s ease, box-shadow 0.15s ease;
-    margin-bottom: 32px;
-  }
-  .store-link:hover {
-    border-color: var(--accent);
-    background: rgba(255,255,255,0.04);
-    text-shadow: 0 0 12px var(--accent-glow);
-    box-shadow: 0 0 20px var(--accent-glow), inset 0 0 40px rgba(255,255,255,0.02);
-  }
-
-  .related {
-    margin-top: 8px;
-  }
-  .related-label {
-    font-size: 0.9rem;
-    color: var(--green-dim);
-    letter-spacing: 0.15em;
-    margin-bottom: 12px;
-    text-shadow: 0 0 6px var(--green-glow);
-  }
-
-  .app {
-    display: block;
-    border: 1px solid var(--accent-dim);
-    padding: 14px 16px;
-    text-decoration: none;
-    color: var(--green);
-    transition: border-color 0.15s ease, background 0.8s ease, text-shadow 0.8s ease, box-shadow 0.8s ease;
-    position: relative;
-    margin-bottom: 4px;
-  }
-  .app:hover {
-    border-color: var(--accent);
-    background: rgba(255,255,255,0.04);
-    text-shadow: 0 0 12px var(--accent-glow);
-    box-shadow: inset 0 0 40px rgba(255,255,255,0.02), 0 0 20px var(--accent-glow);
-    transition: border-color 0.15s ease, background 0.15s ease, text-shadow 0.15s ease, box-shadow 0.15s ease;
-  }
-  .app:hover .app-name { text-shadow: 0 0 12px var(--accent-glow), 0 0 25px var(--accent-glow); }
-  .app:hover .prompt { opacity: 1; }
-
-  .app-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .app-name { font-size: 1.1rem; letter-spacing: 0.08em; color: var(--accent); white-space: nowrap; }
-  .app-tag { font-size: 0.85rem; color: var(--accent-dim); letter-spacing: 0.05em; white-space: nowrap; }
-  .app-desc { font-size: 0.88rem; color: var(--green-dim); margin-top: 4px; line-height: 1.4; }
-  .prompt { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 0.95rem; opacity: 0; transition: opacity 0.15s ease; }
-
-  .footer {
-    text-align: center;
-    padding: 16px 0 0 0;
-    font-size: 0.8rem;
-    color: var(--green-dim);
-    letter-spacing: 0.1em;
-  }
-  .footer a { color: var(--green-dim); text-decoration: none; }
-  .footer a:hover { color: var(--green); }
-
-  .telemetry {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-size: 0.7rem;
-    color: var(--border);
-    letter-spacing: 0.08em;
-    padding: 12px 0 4px 0;
-  }
-
-  @media (max-width: 480px) {
-    .terminal { padding: 16px 12px; }
-    .app-header h1 { font-size: 1.1rem; letter-spacing: 0.15em; }
-    .app-row { flex-direction: column; gap: 2px; }
-    .app-tag { text-align: left; }
-    .prompt { display: none; }
-  }
-</style>
 </head>
-<body>
+<body class="narrow" data-group="energy">
+<div class="screen">
 
-<div class="terminal">
-  <span class="corners tl">┌</span>
-  <span class="corners tr">┐</span>
-  <span class="corners bl">└</span>
-  <span class="corners br">┘</span>
+  <header class="masthead">
+    <span class="system">FDOC07</span>
+    <span class="title">APPLICATION CATALOGUE ── ENERGY MONITORING</span>
+    <span class="position">POWER GRID MONITOR</span>
+  </header>
 
-  <div class="breadcrumb">
-    <a href="../">◀ ALL APPS</a> / ENERGY MONITORING
-  </div>
+  <form class="command" autocomplete="off">
+    <label for="cmd">COMMAND ===&gt;</label>
+    <input id="cmd" name="cmd" spellcheck="false" aria-label="Command">
+    <span class="scroll">SCROLL ===&gt; PAGE</span>
+  </form>
+  <p class="message">ENTER HELP FOR COMMANDS · PF3 RETURNS TO THE CATALOGUE</p>
 
-  <div class="app-header">
-    <h1>GRIDCON</h1>
-    <div class="tag">POWER GRID MONITOR</div>
-  </div>
+  <main>
+    <nav class="crumbs"><a href="../">◀ ALL APPS</a> / ENERGY MONITORING</nav>
 
-  <div class="app-body">
-    <div class="curated">Ireland&#x27;s electricity grid as a car dashboard. Live frequency, demand, wind, solar, carbon, prices and power across the Irish Sea, straight from EirGrid. Native on iPad in every orientation, and ready for iPhone Duo in every pose.</div>
-    <div class="seo">Ireland electricity grid app for iPhone and iPad. Live All-Island grid frequency and demand on twin gauges, wind and solar against EirGrid&#x27;s forecasts, SNSP and the fuel mix, carbon intensity with the cleanest time ahead, the imbalance price, and power flowing along EWIC, Greenlink and Moyle on a live chart of the Irish Sea. Runs natively on iPad in every orientation, its panels side by side, and is ready for iPhone Duo, setting the panels in two columns across the inner display and one beside the tab bar on the outer. No account, no ads and no tracking.</div>
-    
-  </div>
+    <article class="panel product">
+      <h1>GRIDCON</h1>
+      <p class="tag">POWER GRID MONITOR</p>
+      <p class="summary">Ireland&#x27;s electricity grid as a car dashboard. Live frequency, demand, wind, solar, carbon, prices and power across the Irish Sea, straight from EirGrid. Native on iPad in every orientation, and ready for iPhone Duo in every pose.</p>
+      <p class="detail">Ireland electricity grid app for iPhone and iPad. Live All-Island grid frequency and demand on twin gauges, wind and solar against EirGrid&#x27;s forecasts, SNSP and the fuel mix, carbon intensity with the cleanest time ahead, the imbalance price, and power flowing along EWIC, Greenlink and Moyle on a live chart of the Irish Sea. Runs natively on iPad in every orientation, its panels side by side, and is ready for iPhone Duo, setting the panels in two columns across the inner display and one beside the tab bar on the outer. No account, no ads and no tracking.</p>
+      <a class="action" href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener">VIEW ON APP STORE</a>
+    </article>
 
-  <a class="store-link" href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener">▸ VIEW ON APP STORE</a>
+  </main>
 
-  
+  <nav class="keys">
+    <a href="https://fractaldoctor.com/" data-key="1" data-cmd="HOME">PF1=HOME</a>
+    <a href="https://apps.apple.com/ie/app/gridcon/id6760015662" target="_blank" rel="noopener" data-key="2" data-cmd="STORE">PF2=APP STORE</a>
+    <a href="../" data-key="3" data-cmd="BACK CATALOGUE">PF3=CATALOGUE</a>
+  </nav>
 
-  <div class="footer">
-    <a href="../">◀ BACK TO SHOWCASE</a>
-  </div>
-
-  <div class="telemetry">
-    <span>VT220</span>
-    <span>9600,8N1</span>
-    <span>BUF:64K</span>
-    <span>SNR:NOMINAL</span>
-  </div>
+  <footer class="trailer">
+    <span>FONT: 3270 (RICARDO BANFFY, BSD)</span>
+    <span>GENERATED 2026-11-04 19:08 UTC</span>
+  </footer>
 
 </div>
-
 </body>
 </html>
